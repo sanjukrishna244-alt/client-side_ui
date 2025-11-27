@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Inverter Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="device-page">
+
+    <!-- 🔵 Top Title + Action -->
+    <!-- 🔶 Sub Tabs -->
+    <div class="sub-tabs">
+        <button class="active" id="tabMicro">Micro Inverter</button>
+        <button id="tabReplace">Replacement History</button>
+    </div>
+
+    <!-- 📍 Micro Inverter Table -->
+    <div class="table-box" id="microTable">
+        <table>
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>SN</th>
+                    <th>Model</th>
+                    <th>Pv Panels</th>
+                    <th>LayoutPreview</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="no-data">
+                    <td colspan="7">No data</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn-next">Next</button>
+    </div>
+
+    <!-- 📍 Replacement History Table -->
+    <div class="table-box" id="replaceTable" style="display:none;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Original Device</th>
+                    <th>Original S/N</th>
+                    <th>New Device</th>
+                    <th>New SN</th>
+                    <th>Replacement Date</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="no-data">
+                    <td colspan="7">No data</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn-next">Next</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

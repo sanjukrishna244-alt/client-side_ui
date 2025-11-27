@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+  }
+  
+  /* Container */
+  .device-page {
+    width: 100%;
+    padding: 15px 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Header Title + Button */
+  .top-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .device-info h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .device-info p {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #666;
+  }
+  
+  .btn-add {
+    background: #06a77d;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .detect-link {
+    font-size: 11px;
+    margin: 3px 0 10px 0;
+    color: #12a89e;
+    cursor: pointer;
+  }
+  
+  /* Tabs */
+  .main-tabs button,
+  .sub-tabs button {
+    border: none;
+    background: none;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .main-tabs {
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 6px;
+  }
+  
+  .main-tabs button.active {
+    border-bottom: 2px solid #009973;
+    color: #009973;
+  }
+  
+  .sub-tabs button {
+    border: 1px solid #d4d4d4;
+    background: #f8f8f8;
+    border-radius: 15px;
+    margin-right: 6px;
+  }
+  
+  .sub-tabs button.active {
+    background: #009973;
+    color: #fff;
+    border-color: #009973;
+  }
+  
+  /* Table Styles */
+  .table-box {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #d8d8d8;
+    padding-bottom: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  
+  thead tr {
+    background: #097e52;
+    color: #fff;
+    text-align: center;
+  }
+  
+  thead th {
+    padding: 6px 0;
+  }
+  
+  tbody td {
+    text-align: center;
+    padding: 6px 0;
+  }
+  
+  .no-data td {
+    color: #666;
+    font-size: 10px;
+  }
+  
+  .btn-next {
+    background: #06a77d;
+    color: #fff;
+    border: none;
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+    float: right;
+    margin-top: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  /* Responsive */
+  @media(max-width: 768px) {
+    table {
+      font-size: 9px;
+    }
+    .btn-add, .btn-next {
+      font-size: 10px;
+    }
+  }
+  
