@@ -1,0 +1,138 @@
+:root {
+  --green-dark: #007940;
+  --green-main: #00945E;
+  --bg-light: #f7f9fb;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  --radius: 8px;
+  --text: #222;
+  --gray-border: #cccccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-light);
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 26%;
+  background: #fff;
+  padding: 14px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.search-row {
+  display: flex;
+  gap: 6px;
+}
+
+.search-row input {
+  flex: 1;
+  height: 40px;
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius);
+  padding: 0 12px;
+  font-size: 14px;
+  width: 40%;
+}
+
+.search-row button {
+  height: 40px;
+  padding: 0 14px;
+  border: none;
+  background: var(--green-main);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.search-row button:hover {
+  background: var(--green-dark);
+}
+
+.org-box {
+  margin-top: 12px;
+  padding: 8px 10px;
+  background: #D7F7EA;
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* MAIN PANEL */
+.main-panel {
+  flex: 1;
+  background: #fff;
+  /* padding: 14px; */
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-panel .search-row {
+  width: 50%;
+  padding: 10px;
+}
+
+
+.header-strip {
+  /* margin-top: 12px; */
+  background: var(--green-dark);
+  color: #fff;
+  padding: 9px;
+  font-size: 14px;
+  /* border-radius: var(--radius); */
+}
+
+/* GRID LIST */
+.list-grid {
+  /* margin-top: 12px; */
+  gap: 14px 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  font-size: 14px;
+  overflow-y: auto;
+  /* padding-bottom: 15px; */
+  padding: 10px;
+
+}
+
+.list-grid div {
+  padding: 4px 0;
+  /* border-bottom: 1px solid #ececec; */
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .main-panel {
+    width: 100%;
+  }
+}

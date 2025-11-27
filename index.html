@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart UI Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+        <div class="search-row">
+            <input type="text" placeholder="Organization code" id="orgCode">
+            <button id="orgSearchBtn">Search</button>
+        </div>
+
+        <div class="org-box" id="orgBox">Vertex 02</div>
+    </aside>
+
+    <!-- RIGHT PANEL -->
+    <main class="main-panel">
+        <div class="search-row">
+            <input type="text" placeholder="Global search" id="globalSearch">
+            <button id="globalSearchBtn">Search</button>
+        </div>
+
+        <div class="header-strip" id="countPanel">Have PV plant : <span>34</span></div>
+
+        <div class="list-grid" id="listGrid">
+                      <!-- Dynamic items will load here -->
+        </div>
+    </main>
+
+</div>
+
+<script>
+// 👉 Your dynamic list data (API data)
+let sampleData = [
+    "DR KASIM","SHANAVAS","UNNI","RAMESHKUMAR","MAKKAL","Biju Ramachandran",
+    "HARIS","safar","MOHAMMAD","Radhakrishnan C R","SANKARANARAYANAN","MUNEER",
+    "LATHEEF","KRISHNAN","MITHUN","SHANAVAS","Hyfa","Karthika","Prasanthi",
+    "VENUGOPALAN P","NANDANAM","SUDHA","VIJIN","xtreme fitness center",
+    "Junaid Thalassery","DR RAVI","KRISHNAN","CAPITAL ASSOCIATES","M_250904_000001",
+    "hamsa123","GIRIJA","YOSUF V T","SHAMSU","BINU"
+];
+
+const listGrid = document.getElementById("listGrid");
+const globalSearch = document.getElementById("globalSearch");
+
+// 👉 Render function (uses map)
+function renderList(data) {
+    listGrid.innerHTML = data
+        .map(item => `<div>${item}</div>`)
+        .join("");
+}
+
+// 👉 Initial Display
+renderList(sampleData);
+
+// 👉 Search function using map + filter
+globalSearch.addEventListener("input", () => {
+    const keyword = globalSearch.value.toLowerCase().trim();
+
+    const filtered = sampleData.filter(item =>
+        item.toLowerCase().includes(keyword)
+    );
+
+    renderList(filtered);
+});
+</script>
+
+
+</body>
+</html>

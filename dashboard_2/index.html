@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- 🔍 SEARCH SECTION -->
+        <div class="top-row">
+            <input type="text" placeholder="Operators, Keywords content" class="search-input">
+            <button class="btn-search">Search</button>
+
+            <div class="input-group">
+                <label>Operation Time :</label>
+                <input type="date">
+                <input type="date">
+            </div>
+
+            <div class="input-group">
+                <label>Operation Time :</label>
+                <select>
+                    <option>All</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 📌 FILTER TABS -->
+        <div class="tabs">
+            <button class="active">Today</button>
+            <button>Last 7 days</button>
+            <button>Last 1 month</button>
+            <button>Last 3 months</button>
+        </div>
+
+        <!-- 📄 TABLE CARD -->
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operation Type</th>
+                        <th>Operation Summary</th>
+                        <th>Operator</th>
+                        <th>Operation Time</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+
+                <tbody id="operationBody">
+                    <tr class="default-row">
+                        <td colspan="5">Please add owner information</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="submit-btn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // Make tabs active on click
+        const tabs = document.querySelectorAll(".tabs button");
+
+        tabs.forEach(btn => {
+            btn.addEventListener("click", () => {
+                tabs.forEach(b => b.classList.remove("active")); // remove active from all
+                btn.classList.add("active"); // add active to clicked one
+            });
+        });
+
+
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
