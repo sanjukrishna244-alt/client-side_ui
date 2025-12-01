@@ -42,6 +42,20 @@
     </div>
 
 </div>
+<script>
+    const cards = document.querySelectorAll('.device-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            
+            // remove selection from all
+            cards.forEach(c => c.classList.remove('selected'));
+
+            // add selection to clicked one
+            card.classList.add('selected');
+        });
+    });
+</script>
 
 </body>
 </html>

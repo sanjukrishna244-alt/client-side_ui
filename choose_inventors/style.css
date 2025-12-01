@@ -62,8 +62,16 @@ body {
 
 /* EXACT SELECTED STYLE (from your image) */
 .device-card.selected {
-    background: #E0F7F4;   /* exact image color */
-    border-color: #00A889; /* exact image border */
+    background: #E6F0FF;    /* light blue */
+    border-color: #2979FF;  /* blue border */
+}
+
+.device-card.selected img {
+    opacity: 1;
+}
+
+.device-card.selected p {
+    color: #2979FF;
 }
 
 .device-card.selected img {
