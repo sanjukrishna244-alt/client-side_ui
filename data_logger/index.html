@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Logger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sub-tabs">
+    <button class="active" id="tab-logger">Data Logger</button>
+    <button id="tab-history">Replacement History</button>
+</div>
+
+<div id="page-logger" class="page active-page">
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>SN</th>
+                <th>Model</th>
+                <th>Creation Date</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody id="logger-table-body"></tbody>
+    </table>
+
+    <div class="bottom-warning">
+        <span>You have not created a physical layout. Click 'Add' to create now.</span>
+        <a href="#">Add</a>
+    </div>
+</div>
+
+<div id="page-history" class="page">
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Old Logger</th>
+                <th>Old SN</th>
+                <th>New Logger</th>
+                <th>New SN</th>
+                <th>Replacement Date</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody id="history-table-body"></tbody>
+    </table>
+
+    <div class="bottom-warning">
+        <span>You have not created a physical layout. Click 'Add' to create now.</span>
+        <a href="#">Add</a>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

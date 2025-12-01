@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Charger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="device-page">
+
+    <!-- 🔵 Header -->
+    <div class="top-head">
+        <div class="device-info">
+            <h4>EV Charger</h4>
+            <p>Physical Layout & Replacement History</p>
+        </div>
+    </div>
+
+    <!-- 🔶 Sub Tabs -->
+    <div class="sub-tabs">
+        <button class="active" data-tab="tabCharger">Inverter</button>
+        <button data-tab="tabReplace">Replacement History</button>
+    </div>
+
+    <!-- 📄 Inverter Table -->
+    <div id="tabCharger" class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>SN</th>
+                    <th>Model</th>
+                    <th>Capacity</th>
+                    <th>Creation Date</th>
+                    <th>Data Logger</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody id="chargerData"></tbody>
+        </table>
+        <button class="btn-next">Next</button>
+
+        <!-- Layout Section -->
+        <table class="layout-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Pv Panels</th>
+                    <th>LayoutPreview</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody id="layoutData"></tbody>
+        </table>
+    </div>
+
+    <!-- 🔁 Replacement History -->
+    <div id="tabReplace" class="table-box hidden">
+        <table>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Original Device</th>
+                    <th>Original S/N</th>
+                    <th>New Device</th>
+                    <th>New S/N</th>
+                    <th>Replacement Date</th>
+                    <th>Note</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody id="replaceData"></tbody>
+        </table>
+        <button class="btn-next">Next</button>
+
+        <!-- RFID Section -->
+        <div class="rfid-row">
+            <span>RFID Card</span>
+            <button class="btn-add-rfid">Add RFID Card</button>
+        </div>
+
+        <table class="layout-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>RFID Card Name</th>
+                    <th>RFID Card No.</th>
+                    <th>RFID Card No.</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody id="rfidData"></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

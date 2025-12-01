@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.scan-container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Top green header */
+.top-header {
+    background: #0e7c5f;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+}
+
+/* Info box */
+.info-box {
+    background: #ffffff;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+/* Radar container */
+.radar {
+    width: 150px;
+    height: 150px;
+    margin: 40px auto 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(0,255,204,0.2) 20%,
+        rgba(0,255,204,0.15) 40%,
+        rgba(0,255,204,0.10) 60%,
+        rgba(0,255,204,0.05) 80%
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+/* Rotating beam */
+.beam {
+    width: 50%;
+    height: 2px;
+    background: rgba(0, 100, 255, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left center;
+    animation: rotate 2s linear infinite;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Text below animation */
+.scan-text {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #666;
+}

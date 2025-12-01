@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: #ffffff;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+}
+
+/* Container */
+.popup-container {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+/* Top green header */
+.popup-header {
+    background: #0c7a5a;   /* exact green */
+    color: #fff;
+    padding: 14px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Center icon image */
+.popup-content {
+    padding: 40px 0 30px;
+}
+
+.popup-icon {
+    width: 120px;
+    opacity: 0.6;
+}
+
+/* Buttons */
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Cancel button */
+.cancel-btn {
+    padding: 8px 22px;
+    border: 1.5px solid #0c7a5a;
+    background: transparent;
+    color: #0c7a5a;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Add and Update button */
+.add-update-btn {
+    padding: 8px 22px;
+    border: none;
+    background: linear-gradient(to right, #7fd3c5, #4fb6a1);
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media only screen and (max-width: 480px) {
+    .popup-container {
+        padding: 0 15px;
+    }
+
+    .popup-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cancel-btn, .add-update-btn {
+        width: 100%;
+    }
+}

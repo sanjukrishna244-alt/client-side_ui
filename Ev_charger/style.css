@@ -1,0 +1,33 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+
+body{background:#f2f2f2;}
+
+.device-page{width:95%;margin:auto;padding-top:10px;}
+
+.top-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.device-info h4{margin-bottom:2px;}
+
+.sub-tabs{margin:10px 0;}
+.sub-tabs button{
+    padding:6px 14px;border:1px solid #c9c9c9;background:#f8f8f8;
+    border-radius:6px;margin-right:6px;cursor:pointer;font-size:13px;
+}
+.sub-tabs button.active{background:white;border:1px solid #378f75;}
+
+.table-box{background:white;border-radius:6px;padding:5px;margin-bottom:25px;}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:#0d8a68;color:white;padding:8px;text-align:left;font-weight:500;}
+td{padding:6px;border-bottom:1px solid #ddd;}
+.no-data{text-align:center;}
+
+.btn-next{float:right;margin-top:6px;background:#0d8a68;color:white;padding:4px 18px;
+border:none;border-radius:6px;font-size:12px;cursor:pointer;}
+
+.layout-table{margin-top:12px;}
+.layout-table td{background:#fffbe5;}
+
+.rfid-row{display:flex;justify-content:space-between;padding:6px 0;}
+.btn-add-rfid{background:#0d8a68;color:white;padding:4px 10px;border:none;border-radius:4px;font-size:12px;cursor:pointer;}
+
+.hidden{display:none;}

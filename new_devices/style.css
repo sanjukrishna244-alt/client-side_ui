@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;   /* centers the box vertically with spacing */
+}
+
+/* MAIN BOX EXACT SIZE AS IMAGE */
+.new-devices-box {
+    width: 480px;
+    background: #ffffff;
+    padding-bottom: 20px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+
+    /* removed border radius */
+    border-radius: 0;
+}
+
+/* TOP GREEN HEADER */
+.nd-header {
+    background: #067A50;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 17px;
+    font-weight: bold;
+
+    /* removed border radius */
+    border-radius: 0;
+}
+
+/* GREY BOX */
+.nd-type-box {
+    margin: 16px;
+    background: #F3F3F3;
+    padding: 10px;
+
+    /* removed border radius */
+    border-radius: 0;
+
+    font-size: 14px;
+    text-align: center;
+}
+
+/* TITLES */
+.nd-section {
+    padding: 0 16px;
+    margin-top: 10px;
+}
+
+.nd-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* DESCRIPTION TEXT */
+.nd-text {
+    font-size: 13px;
+    line-height: 1.35;
+    color: #444;
+}
+
+/* BUTTON ROW EXACT CENTER */
+.nd-btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* CANCEL BUTTON */
+.nd-cancel {
+    padding: 8px 26px;
+    border: 1px solid #1BC49E;
+    background: white;
+
+    /* removed radius */
+    border-radius: 0;
+
+    font-size: 14px;
+    color: #1BC49E;
+    cursor: pointer;
+}
+
+/* ADD BUTTON */
+.nd-add {      
+    padding: 8px 34px;
+    background: #d0dbd9;
+    border: none;
+
+    /* removed radius */
+    border-radius: 0;
+
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
