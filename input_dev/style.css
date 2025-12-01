@@ -1,0 +1,96 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 420px;
+    text-align: left;
+}
+
+/* Top header */
+.top-header {
+    background: #0b876c;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 18px;
+}
+
+/* Form box */
+.form-box {
+    background: #fff;
+    padding: 20px 15px;
+    border-radius: 0 0 5px 5px;
+}
+
+.form-box label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #15a58c;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-box input::placeholder {
+    color: #8a8a8a;
+}
+
+/* Buttons row */
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Cancel button */
+.cancel-btn {
+    padding: 8px 22px;
+    border-radius: 6px;
+    border: 1px solid #13a589;
+    color: #13a589;
+    background: transparent;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Submit button */
+.submit-btn {
+    padding: 8px 22px;
+    border-radius: 6px;
+    border: none;
+    background: linear-gradient(to right, #16b89f, #1fba94);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 380px) {
+    .button-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
