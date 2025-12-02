@@ -1,0 +1,126 @@
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    background: #e2e2e2;
+    font-family: Arial, sans-serif;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1350px;
+    margin: 40px auto;          /* centers entire block */
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #d0d0d0;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    /* ✨ NEW center alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+
+/* Header */
+thead {
+    background: #0a8159;
+    color: white;
+}
+
+th {
+    padding: 14px;
+    font-size: 13px;
+    text-align: left;
+    font-weight: 500;
+}
+
+th:last-child {
+    text-align: center;
+}
+
+/* TABLE BODY */
+tbody tr:nth-child(even) { background: #f1f1f1; }
+tbody tr:nth-child(odd) { background: #fff; }
+
+td {
+    padding: 14px;
+    font-size: 13px;
+    color: #303030;
+    white-space: nowrap;
+}
+
+.expand-btn {
+    width: 22px;
+    cursor: pointer;
+}
+
+.star {
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.4;
+}
+
+/* STAR WHEN ACTIVE */
+.star.active {
+    color: #0a8159 !important;
+    opacity: 1;
+}
+
+/* EXPANDED AREA */
+.expanded-row td {
+    background: #f7f7f7;
+    padding: 25px;
+}
+
+.expanded-content {
+    display: flex;
+    gap: 40px;
+}
+
+/* DUMMY GRAPH BOX */
+.graph-box {
+    width: 300px;
+    height: 220px;
+    border: 1px solid #bcbcbc;
+    background: linear-gradient(135deg, #d9f2df, #b4dfc8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a8159;
+    font-size: 20px;
+}
+
+/* History Button */
+.history-btn-row {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.history-btn {
+    background: #0a8159;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Footer Next Button */
+.footer {
+    padding: 14px;
+    display: flex;
+    justify-content: flex-end;
+    background: white;
+}
+
+.next-btn {
+    background: #00a66a;
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+}

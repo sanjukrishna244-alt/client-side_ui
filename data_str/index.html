@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Alarm Table UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="table-container">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Plant</th>
+                <th>SN</th>
+                <th>Inverter</th>
+                <th>Device Type</th>
+                <th>Fault level</th>
+                <th>Fault Classification</th>
+                <th>Status</th>
+                <th>Details</th>
+                <th>⭐</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <!-- EXPANDABLE ROW (just like screenshot) -->
+            <tr class="expandable">
+                <td>BINU</td>
+                <td>58000DTS219W02269</td>
+                <td>GW5000-DNS</td>
+                <td>Inverter</td>
+                <td>1.08kWh/kWp</td>
+                <td>Fault</td>
+                <td>Production Events</td>
+                <td><img src="expand.png" class="expand-btn"></td>
+                <td><span class="star">⭐</span></td>
+            </tr>
+
+            <!-- REST OF NORMAL ROWS -->
+            <tr>
+                <td>YOSUF V T</td>
+                <td>58000DTS219W02269</td>
+                <td>GW5000-DNS</td>
+                <td>Inverter</td>
+                <td>1.08kWh/kWp</td>
+                <td>Fault</td>
+                <td>Production Events</td>
+                <td><img src="expand.png" class="expand-btn"></td>
+                <td><span class="star">⭐</span></td>
+            </tr>
+
+            <tr>
+                <td>Junaid Thalassery</td>
+                <td>58000DTS219W02269</td>
+                <td>GW15K-SDT-30</td>
+                <td>Inverter</td>
+                <td>1.273kWh/kWp</td>
+                <td>Alarm</td>
+                <td>Operating Condition L...</td>
+                <td><img src="expand.png" class="expand-btn"></td>
+                <td><span class="star">⭐</span></td>
+            </tr>
+
+            <tr>
+                <td>Hyfa</td>
+                <td>58000DTS219W02269</td>
+                <td>GOODWE</td>
+                <td>Inverter</td>
+                <td>1.273kWh/kWp</td>
+                <td>Prompt</td>
+                <td>Operating Condition L...</td>
+                <td><img src="expand.png" class="expand-btn"></td>
+                <td><span class="star">⭐</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <button class="next-btn">Next</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
