@@ -8,6 +8,7 @@ body {
 }
 
 .table-container {
+    
     width: 100%;
     max-width: 1350px;
     margin: 40px auto;          /* centers entire block */

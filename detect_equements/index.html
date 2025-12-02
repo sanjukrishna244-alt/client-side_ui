@@ -3,33 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Devices Scanning</title>
-    <link rel="stylesheet" href="style.css">
+    <title>New Devices - Loading</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
-
-<div class="scan-container">
-
     <!-- Header -->
-    <div class="top-header">
-        New Devices
-    </div>
+    <header class="header">
+        <h1>New Devices</h1>
+    </header>
 
-    <!-- Info Box -->
-    <div class="info-box">
-        Discoverable equipment types: <strong>Inverter, EMI</strong>
-    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Equipment Type Bar -->
+        <div class="equipment-bar">
+            <p>Discoverable equipment types: Inverter, EMI</p>
+        </div>
 
-    <!-- Radar Animation -->
-    <div class="radar">
-        <div class="beam"></div>
-    </div>
+        <!-- Loading Spinner -->
+        <div class="spinner-container">
+            <!-- Outer circle -->
+            <div class="spinner-outer"></div>
+            
+            <!-- Middle circle -->
+            <div class="spinner-mid"></div>
+            
+            <!-- Inner circle -->
+            <div class="spinner-inner"></div>
+            
+            <!-- Center dot -->
+            <div class="spinner-dot"></div>
+            
+            <!-- Rotating pointer -->
+            <div class="spinner-rotate">
+                <div class="spinner-pointer"></div>
+            </div>
+        </div>
 
-    <!-- Text -->
-    <p class="scan-text">Scanning new devices, please wait....</p>
-
-</div>
-
+        <!-- Loading Text -->
+        <p class="loading-text">Scanning new devices, please wait....</p>
+    </main>
 </body>
 </html>
