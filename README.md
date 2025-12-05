@@ -1,6 +1,6 @@
 🧩 What this UI Does
 
-Allows users to filter records based on Today, Last 7 Days, Last 1 Month & Last 3 Months
+Allows users to filter records based on Today, Last 7 Days, Last 1 Month \& Last 3 Months
 
 Displays an operation log table with:
 
@@ -18,11 +18,13 @@ Table updates dynamically on tab change
 
 Includes reserved API spaces (commented), ready for backend integration
 
-🎨 Design & UX Highlights
+🎨 Design \& UX Highlights
 
-Smooth & spacious UI with perfect gap balance
+Smooth \& spacious UI with perfect gap balance
 
-Green accent color palette (Fresh & minimal)
+random : https://autotouch-8d7c0.web.app/
+
+Green accent color palette (Fresh \& minimal)
 
 Shadows and borders carefully tuned for depth
 
@@ -32,9 +34,9 @@ Fully responsive:
 
 📱 Mobile
 
-📐 Tablets & Large Screens
+📐 Tablets \& Large Screens
 
-Uses controlled corner radius & subtle elevation to create a card-like view
+Uses controlled corner radius \& subtle elevation to create a card-like view
 
 🔧 Tech Used
 
@@ -50,7 +52,10 @@ Smart ternary conditions for filtering button actions
 
 Future-ready API fetch placeholders
 
+
+
 🚀 Backend Ready
 
 Even though the data is currently presented with dummy JSON objects,
 the file already contains API placeholders, meaning you can instantly plug in:
+

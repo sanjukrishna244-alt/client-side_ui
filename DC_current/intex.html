@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plant Dashboard — Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- TOP HEADER -->
+    <header class="topbar">
+      <div class="logo">BINU</div>
+      <div class="search-area">
+        <input id="search" placeholder="Please enter plant / SN / email" />
+        <button id="btnSearch">Search</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Plant overview + gauges + stats -->
+      <section class="overview">
+        <div class="plant-left">
+          <!-- placeholder photo -->
+          <div class="plant-photo">
+            <img src="./img/img_.png" alt="Plant Photo">
+          </div>
+        </div>
+
+        <div class="plant-mid">
+          <div class="gauges">
+            <div class="gauge-card">
+              <div class="gauge-title">Working</div>
+              <div class="gauge-svg" data-value="30"></div>
+              <div class="gauge-value">30W</div>
+            </div>
+            <div class="gauge-card">
+              <div class="gauge-title">Working</div>
+              <div class="gauge-svg" data-value="20"></div>
+              <div class="gauge-value">20W</div>
+            </div>
+          </div>
+
+          <div class="stat-cards">
+            <div class="stat-card card-dark-blue">
+              <div class="stat-info-icon">?</div>
+              <div class="stat-icon-large">⚡</div>
+              <div class="stat-content">
+                <div class="stat-label">PV Generation Today</div>
+                <div class="stat-value">2.40 kWh</div>
+              </div>
+            </div>
+            <div class="stat-card card-green">
+              <div class="stat-icon-large">⚡</div>
+              <div class="stat-content">
+                <div class="stat-label">Income Today</div>
+                <div class="stat-value">26.35 INR</div>
+              </div>
+            </div>
+            <div class="stat-card card-light-blue">
+              <div class="stat-info-icon">?</div>
+              <div class="stat-icon-large">⚡</div>
+              <div class="stat-content">
+                <div class="stat-label">Total Generation</div>
+                <div class="stat-value">6057.60 kWh</div>
+              </div>
+            </div>
+            <div class="stat-card card-light-green">
+              <div class="stat-icon-large">⚡</div>
+              <div class="stat-content">
+                <div class="stat-label">Total Income</div>
+                <div class="stat-value">51489.60 INR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Middle section: Plant Details + Power Chart -->
+      <section class="middle-section">
+        <!-- Left: Plant Details Card -->
+        <div class="plant-details-card">
+          <div class="plant-info-section">
+            <div class="info-item"><span class="info-label">Deeatech:</span> <span class="info-value">02.27.2025</span></div>
+            <div class="info-item"><span class="info-label">Classification:</span> <span class="info-value">Residential</span></div>
+            <div class="info-item"><span class="info-label">PV Capacity:</span> <span class="info-value">15.00 kW</span></div>
+            <div class="info-item"><span class="info-label">Location:</span> <span class="info-value">Thalassery, Kerala, India</span></div>
+          </div>
+          
+          <div class="weather-forecast">
+            <div class="weather-day">
+              <div class="weather-label">Today</div>
+              <div class="weather-temp">29°</div>
+              <div class="weather-icon">☁️</div>
+            </div>
+            <div class="weather-day">
+              <div class="weather-label">Tuesday</div>
+              <div class="weather-temp">24°/29°</div>
+              <div class="weather-icon">☀️</div>
+            </div>
+            <div class="weather-day">
+              <div class="weather-label">Wednesday</div>
+              <div class="weather-temp">24°/28°</div>
+              <div class="weather-icon">☀️</div>
+            </div>
+            <div class="weather-day">
+              <div class="weather-label">Thursday</div>
+              <div class="weather-temp">24°/28°</div>
+              <div class="weather-icon">☀️</div>
+            </div>
+            <div class="weather-day">
+              <div class="weather-label">Friday</div>
+              <div class="weather-temp">24°/29°</div>
+              <div class="weather-icon">⛅</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Power Chart Card -->
+        <div class="power-section">
+          <div class="power-header">
+            <button class="add-button">+</button>
+            <div class="tabs">
+              <button class="tab active" data-tab="power">Power</button>
+              <button class="tab" data-tab="income">Generation & Income</button>
+              <div class="tab-info">
+                <div class="small">Generation: <strong id="genVal">7.30 kWh</strong></div>
+                <div class="small">Income: <strong id="incVal">62.05 INR</strong></div>
+              </div>
+              <div class="chart-date">
+                <button class="date-nav-btn">‹</button>
+                <span class="calendar-icon">📅</span>
+                <span id="chartDate">12.02.2025</span>
+                <button class="date-nav-btn">›</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-area">
+            <div class="chart-left">
+              <!-- small minigraph left area for compact look -->
+              <div class="mini-graph" aria-hidden="true"></div>
+            </div>
+
+            <div class="chart-main">
+              <canvas id="lineChart" width="900" height="240"></canvas>
+            </div>
+
+            <div class="chart-right">
+              <!-- tooltip indicator -->
+              <div class="legend">
+                <span class="legend-square"></span>
+                <span class="legend-line"></span>
+                <span class="legend-text">PV(W)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- bottom inverter panel -->
+      <section class="inverter-panel">
+        <div class="inv-left">
+          <h3 class="inv-title">Inverter</h3>
+          <div class="inv-model">GW3300-XS</div>
+          <div class="info-grid">
+            <div class="info-row">
+              <span class="label">Model</span>
+              <span class="value">GW3300-XS</span>
+            </div>
+            <div class="info-row">
+              <span class="label">SN</span>
+              <span class="value">5330085X228W1357</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Checkcode</span>
+              <span class="value">003452</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Rated Power</span>
+              <span class="value">3.3 kW</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Connected</span>
+              <span class="value">06.15.2024 16:24:02</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Power</span>
+              <span class="value">0.113 kW</span>
+            </div>
+            <div class="info-row">
+              <span class="label">AC Voltage</span>
+              <span class="value">226.4 V</span>
+            </div>
+            <div class="info-row">
+              <span class="label">AC Current</span>
+              <span class="value">0.7 A</span>
+            </div>
+            <div class="info-row">
+              <span class="label">AC Frequency</span>
+              <span class="value">49.64 Hz</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-center">
+          <div class="big-circle">
+            <div class="circle-outer"></div>
+            <div class="circle-inner">
+              <div class="income">Income: <small>62.05 INR</small></div>
+              <div class="big-value">8.2</div>
+              <div class="unit">kWh</div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-box">
+              <div class="status-icon-top">⚡</div>
+              <div class="status-label">Total Generation</div>
+              <div class="status-value">6064.1kWh</div>
+            </div>
+            <div class="status-box working-box">Working</div>
+            <div class="status-box">
+              <div class="status-icon-top">🕐</div>
+              <div class="status-label">Total Hours</div>
+              <div class="status-value">6681 hours</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-right">
+          <div class="curve-link">Curve ></div>
+          <div class="right-grid">
+            <div class="info-row">
+              <span class="label">Inner Temperature</span>
+              <span class="value">36.9</span>
+            </div>
+            <div class="info-row">
+              <span class="label">DC voltage/current 1</span>
+              <span class="value">234.8/0.3 V/A</span>
+            </div>
+            <div class="info-row">
+              <span class="label">RSSI</span>
+              <span class="value">23.0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
