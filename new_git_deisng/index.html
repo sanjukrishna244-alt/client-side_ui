@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Plant Dashboard — Pixel Match</title>
 
-  <!-- Chart.js CDN -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <link rel="stylesheet" href="style.css" />
@@ -26,15 +26,15 @@
     <section class="top-grid">
 
       <div class="photo-card card">
-        <img src="./img/img_.png" alt="Plant Photo" class="plant-img"/>
+        <!-- Replace image path with your file -->
+        <img src="./img/plant.jpg" alt="Plant Photo" class="plant-img"/>
       </div>
 
       <div class="gauges-col">
         <div class="gauge-card card">
           <div class="g-title">Working</div>
           <div class="g-svg">
-            <!-- gauge1: custom svg; needle rotated by JS -->
-            <svg viewBox="0 0 200 120" class="gauge-svg" data-id="g1">
+            <svg viewBox="0 0 200 120" class="gauge-svg" aria-hidden="true">
               <defs>
                 <linearGradient id="g1grad" x1="0" x2="1">
                   <stop offset="0" stop-color="#dbe7ff"/>
@@ -43,7 +43,7 @@
               </defs>
               <path d="M10 110 A90 90 0 0 1 190 110" stroke="#eef4ff" stroke-width="22" fill="none" stroke-linecap="round"/>
               <path d="M10 110 A90 90 0 0 1 190 110" stroke="url(#g1grad)" stroke-width="22" fill="none" stroke-linecap="round"/>
-              <line id="g1needle" x1="100" y1="110" x2="60" y2="78" stroke="#111" stroke-width="3" stroke-linecap="round" transform-origin="100px 110px"/>
+              <line id="g1needle" x1="100" y1="110" x2="100" y2="40" stroke="#111" stroke-width="3" stroke-linecap="round" transform-origin="100px 110px"/>
             </svg>
           </div>
           <div class="g-value" id="g1val">30W</div>
@@ -52,7 +52,7 @@
         <div class="gauge-card card">
           <div class="g-title">Working</div>
           <div class="g-svg">
-            <svg viewBox="0 0 200 120" class="gauge-svg" data-id="g2">
+            <svg viewBox="0 0 200 120" class="gauge-svg" aria-hidden="true">
               <defs>
                 <linearGradient id="g2grad" x1="0" x2="1">
                   <stop offset="0" stop-color="#d6f1ff"/>
@@ -61,7 +61,7 @@
               </defs>
               <path d="M10 110 A90 90 0 0 1 190 110" stroke="#eef9ff" stroke-width="22" fill="none" stroke-linecap="round"/>
               <path d="M10 110 A90 90 0 0 1 190 110" stroke="url(#g2grad)" stroke-width="22" fill="none" stroke-linecap="round"/>
-              <line id="g2needle" x1="100" y1="110" x2="120" y2="86" stroke="#111" stroke-width="3" stroke-linecap="round" transform-origin="100px 110px"/>
+              <line id="g2needle" x1="100" y1="110" x2="100" y2="40" stroke="#111" stroke-width="3" stroke-linecap="round" transform-origin="100px 110px"/>
             </svg>
           </div>
           <div class="g-value" id="g2val">20W</div>
@@ -178,7 +178,7 @@
       </div>
 
       <div class="inv-center">
-        <div class="meter-outer-ring"></div>
+        <div class="meter-outer-ring" aria-hidden="true"></div>
         <div class="meter card meter-core">
           <div class="income">Income: <small>62.05 INR</small></div>
           <div class="value" id="meterValue">8.2</div>
