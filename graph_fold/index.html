@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inverter Chart UI</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="graph-only.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- LEFT NAV removed -->
+
+  <!-- RIGHT CONTENT -->
+  <main class="chart-container">
+
+    <!-- Header -->
+    <div class="chart-header">
+      <div class="ch-left">
+        <h4>Inverter</h4>
+        <span class="inv-model">GW3300-XS</span>
+
+        <div class="chart-tabs">
+          <div class="dropdown-wrapper">
+            <button id="powerBtn" class="tab active">Power ▾</button>
+            <div class="dropdown-menu" id="powerMenu" aria-hidden="true">
+              <div class="dd-item">Daily Power</div>
+              <div class="dd-item">Monthly Power</div>
+              <div class="dd-item">Yearly Power</div>
+            </div>
+          </div>
+          <button class="tab">Generation & Income</button>
+        </div>
+      </div>
+
+      <div class="ch-right">
+        <div class="tools">
+          <span class="ico">⚙️</span>
+          <span class="ico">📊</span>
+        </div>
+
+        <div class="date-box">
+          <button class="date-btn">◀</button>
+          <input type="date" value="2025-02-12">
+          <button class="date-btn">▶</button>
+        </div>
+
+        <div class="download">📥</div>
+      </div>
+    </div>
+
+    <!-- ACTUAL GRAPH PANEL -->
+    <div class="chart-panel">
+      <canvas id="pvGraph"></canvas>
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+// Power dropdown toggle
+;(function(){
+  const btn = document.getElementById('powerBtn');
+  const wrapper = btn ? btn.closest('.dropdown-wrapper') : null;
+  const menu = document.getElementById('powerMenu');
+  if(!btn || !wrapper || !menu) return;
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    wrapper.classList.toggle('open');
+    menu.setAttribute('aria-hidden', wrapper.classList.contains('open') ? 'false' : 'true');
+  });
+
+  // select item
+  menu.addEventListener('click', function(e){
+    const item = e.target.closest('.dd-item');
+    if(!item) return;
+    const txt = item.textContent.trim();
+    btn.textContent = txt + ' ▾';
+    wrapper.classList.remove('open');
+    menu.setAttribute('aria-hidden','true');
+  });
+
+  // close on outside
+  document.addEventListener('click', function(e){
+    if(!wrapper.contains(e.target)){
+      wrapper.classList.remove('open');
+      menu.setAttribute('aria-hidden','true');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

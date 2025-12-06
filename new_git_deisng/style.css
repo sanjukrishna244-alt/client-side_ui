@@ -5,6 +5,7 @@
   --teal:#00a66a;
   --muted:#9aa4a0;
   --dark:#073e3a;
+  --inverter-bg:#003c3c; /* deep teal for inverter panel */
 }
 
 /* base */
@@ -16,7 +17,7 @@ html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;backg
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .brand{font-weight:700;color:#2b5a48;font-size:18px}
 .search-area{display:flex;gap:10px;align-items:center}
-.search-area input{padding:10px 14px;border-radius:22px;border:1px solid #e2e2e2;min-width:300px;background:#fff}
+.search-area input{padding:10px 14px;border-radius:22px;border:1px solid #e2e2e2;min-width:320px;background:#fff}
 .search-area button{padding:9px 18px;border-radius:10px;background:var(--teal);color:#fff;border:none;cursor:pointer}
 
 /* card base */
@@ -28,8 +29,9 @@ html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;backg
 .plant-img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
 
 /* GAUGES COL */
-.gauges-col{display:flex;flex-direction:row;gap:18px;flex:0 0 520px}
-.gauge-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-width:240px}
+.gauges-col{display:flex;flex-direction:row;gap:18px;flex:0 0 520px;align-items:flex-start}
+.gauge-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-width:240px;border-radius:10px}
+.gauge-card--small{min-width:240px;max-width:260px}
 .g-title{width:100%;text-align:right;color:var(--green);font-weight:600;font-size:13px}
 .gauge-svg{width:100%;height:120px}
 .g-value{margin-top:8px;background:#e7f7ef;color:var(--green);padding:6px 14px;border-radius:14px;font-weight:700}
@@ -53,8 +55,8 @@ html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;backg
 
 /* WEATHER */
 .weather .weather-grid{display:flex;gap:10px;flex-wrap:wrap}
-.day{background:#fff;border-radius:10px;padding:10px 12px;border:1px solid #eee;text-align:center;min-width:72px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.day.big{min-width:105px}
+.day{background:#fff;border-radius:10px;padding:10px 12px;border:1px solid #eee;text-align:center;min-width:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:74px}
+.day.big{min-width:105px;min-height:92px}
 .temp{font-size:28px;color:#2b5a48;font-weight:700}
 .temp-sm{font-weight:700;color:#2b5a48}
 
@@ -62,9 +64,9 @@ html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;backg
 .chart-card{padding:10px;max-width:100%;box-sizing:border-box}
 .chart-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .tabs{display:flex;gap:8px;align-items:center}
-.tab{padding:8px 14px;border-radius:14px;border:1px solid #e6e6e6;background:#fff;cursor:pointer}
+.tab{padding:8px 14px;border-radius:14px;border:1px solid #e6e6e6;background:#fff;cursor:pointer;font-size:13px}
 .tab.active{background:var(--green);color:#fff;border-color:var(--green)}
-.chart-info{margin-left:12px;color:#333;display:flex;gap:14px;align-items:center}
+.chart-info{margin-left:12px;color:#333;display:flex;gap:14px;align-items:center;font-size:13px}
 .date-area{margin-left:auto}
 .date-area input{padding:8px;border-radius:8px;border:1px solid #ddd;background:#fff}
 .chart-body{padding:4px;border-radius:8px;display:flex;justify-content:center}
@@ -72,17 +74,29 @@ html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;backg
 canvas#pvChart{width:100% !important;height:260px !important;display:block}
 
 /* INVERTER */
-.inverter-card{display:grid;grid-template-columns:1fr 420px 320px;gap:18px;padding:22px;border-radius:12px;background:var(--dark);color:#fff}
+.inverter-card{display:grid;grid-template-columns:1fr 420px 320px;gap:18px;padding:22px;border-radius:12px;background:var(--inverter-bg);color:#fff}
 .inv-title{color:#66d7c7;margin:0;font-weight:700}
 .inv-model{margin-bottom:10px;color:#e6ffff;font-weight:700}
 .info-list .ir{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
-.meter-core{width:220px;height:220px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 12px 40px rgba(0,0,0,0.35);margin:0 auto;background:radial-gradient(circle at 30% 25%,#54e6d0 0%,#2ab39a 45%,#0b6e63 100%);border:6px solid rgba(255,255,255,0.08)}
-.meter-core .income{font-size:13px;margin-bottom:6px}
-.meter-core .value{font-size:56px;font-weight:800}
-.meter-core .unit{opacity:0.95}
-.meter-pills{display:flex;gap:12px;justify-content:center;margin-top:14px}
-.pill{background:rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;display:flex;align-items:center;gap:8px}
-.pill.work{background:#60a98f;padding:12px 18px;font-weight:700}
+/* OUTER white ring and inner meter */
+.meter-outer-ring{
+  width:260px;height:260px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;
+  background: radial-gradient(circle, #ffffff 0%, #eefefc 35%, rgba(255,255,255,0.0) 65%);
+  box-shadow: 0 0 16px rgba(255,255,255,0.18);
+}
+.meter-core{
+  width:200px;height:200px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background: radial-gradient(circle at 30% 25%, #54e6d0 0%, #2ab39a 45%, #0b6e63 100%);
+  border:6px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 4px 12px rgba(255,255,255,0.15);
+}
+.meter-core .income{font-size:13px;margin-bottom:6px;color:rgba(255,255,255,0.95)}
+.meter-core .value{font-size:56px;font-weight:800;color:#fff}
+.meter-core .unit{opacity:0.95;color:#fff}
+.meter-pills{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;display:flex;align-items:center;gap:8px;min-width:120px;justify-content:center}
+.pill .p-ico{font-size:20px}
+.pill.work{background:#ffffff;color:var(--inverter-bg);padding:12px 24px;border-radius:24px;font-weight:700}
 
 /* small tweaks & responsiveness */
 @media (max-width:1200px){
@@ -100,4 +114,7 @@ canvas#pvChart{width:100% !important;height:260px !important;display:block}
   .stat-card{min-width:140px;max-width:180px}
   .plant-img{height:180px;object-position:center}
   .search-area input{min-width:140px}
+  .inverter-card{grid-template-columns:1fr;gap:12px}
+  .meter-outer-ring{width:220px;height:220px}
+  .meter-core{width:180px;height:180px}
 }

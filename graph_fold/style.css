@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: #fff;
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* LEFT NAV */
+.left-nav {
+  width: 220px;
+  background: #ffffff11;
+  padding: 14px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.left-title {
+  color: #ddd;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.nav-btn {
+  width: 100%;
+  background: #fff;
+  border: none;
+  color: #333;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-btn:hover {
+  background: #e9e9e9;
+}
+
+.no-dd {
+  background: #f4f4f4;
+}
+
+.dropdown {
+  display: none;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  padding: 6px 0;
+  margin-bottom: 10px;
+}
+
+.dropdown .d-item {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.dropdown .d-item:hover {
+  background: #efefef;
+}
+
+/* CONTENT */
+.chart-container {
+  flex: 1;
+  background: #024c4c;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+/* HEADER */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ch-left h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.inv-model {
+  display: block;
+  font-size: 13px;
+  color: #9df3e9;
+  margin-top: 6px;
+}
+
+.chart-tabs {
+  display: flex;
+  margin-top: 14px;
+}
+
+/* Dropdown for Power tab */
+.dropdown-wrapper{position:relative;display:inline-block}
+.dropdown-menu{position:absolute;top:42px;left:0;background:#fff;color:#222;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,0.18);min-width:160px;display:none;z-index:50;padding:6px 0}
+.dropdown-menu .dd-item{padding:8px 12px;cursor:pointer;white-space:nowrap}
+.dropdown-menu .dd-item:hover{background:#f3f3f3}
+.dropdown-wrapper.open .dropdown-menu{display:block}
+.dropdown-wrapper .tab{background:#00dbaa;color:#012;}
+
+.tab {
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid #fff5;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.tab.active {
+  background: #00dbaa;
+  border-color: #00dbaa;
+}
+
+.ch-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tools .ico {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.date-box {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.date-btn {
+  padding: 6px 8px;
+  cursor: pointer;
+  border: none;
+  background: #ffffff22;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.date-box input {
+  padding: 6px;
+  background: #fff;
+  border-radius: 5px;
+  border: none;
+}
+
+.download {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* GRAPH PANEL */
+.chart-panel {
+  margin-top: 16px;
+  background: #003434;
+  border-radius: 12px;
+  padding: 20px;
+  height: 340px;
+}
+
+canvas {
+  width: 100% !important;
+  height: 290px !important;
+}
+
+/* tooltip created by graph-only.js */
+.chartjs-tooltip{position:absolute;pointer-events:none;border-radius:6px;padding:8px 10px;background:#fff;color:#111;border:1px solid #ddd;font-size:13px;box-shadow:0 6px 18px rgba(0,0,0,0.12);z-index:9999}

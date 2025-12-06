@@ -31,7 +31,7 @@
       </div>
 
       <div class="gauges-col">
-        <div class="gauge-card card">
+        <div class="gauge-card card gauge-card--small">
           <div class="g-title">Working</div>
           <div class="g-svg">
             <svg viewBox="0 0 200 120" class="gauge-svg" aria-hidden="true">
@@ -49,7 +49,7 @@
           <div class="g-value" id="g1val">30W</div>
         </div>
 
-        <div class="gauge-card card">
+        <div class="gauge-card card gauge-card--small">
           <div class="g-title">Working</div>
           <div class="g-svg">
             <svg viewBox="0 0 200 120" class="gauge-svg" aria-hidden="true">
@@ -153,7 +153,9 @@
           </div>
 
           <div class="chart-body">
-            <canvas id="pvChart"></canvas>
+            <div class="chart-box">
+              <canvas id="pvChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -178,17 +180,26 @@
       </div>
 
       <div class="inv-center">
-        <div class="meter-outer-ring" aria-hidden="true"></div>
-        <div class="meter card meter-core">
-          <div class="income">Income: <small>62.05 INR</small></div>
-          <div class="value" id="meterValue">8.2</div>
-          <div class="unit">kWh</div>
+        <div class="meter-outer-ring" aria-hidden="true">
+          <div class="meter-core">
+            <div class="income">Income: <small>62.05 INR</small></div>
+            <div class="value" id="meterValue">8.2</div>
+            <div class="unit">kWh</div>
+          </div>
         </div>
 
         <div class="meter-pills">
-          <div class="pill"><div class="p-ico">⚡</div><div class="p-text">Total Generation<br><strong>6064.1 kWh</strong></div></div>
+          <div class="pill">
+            <div class="p-ico">⚡</div>
+            <div class="p-text">Total Generation<br><strong>6064.1 kWh</strong></div>
+          </div>
+
           <div class="pill work">Working</div>
-          <div class="pill"><div class="p-ico">🕐</div><div class="p-text">Total Hours<br><strong>6681 hours</strong></div></div>
+
+          <div class="pill">
+            <div class="p-ico">🕐</div>
+            <div class="p-text">Total Hours<br><strong>6681 hours</strong></div>
+          </div>
         </div>
       </div>
 
@@ -203,6 +214,46 @@
     </section>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // minimal JS to render chart and animate gauge needles (keeps file self-contained)
+    document.addEventListener("DOMContentLoaded", () => {
+      // Chart
+      const ctx = document.getElementById("pvChart").getContext("2d");
+      const labels = ["06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"];
+      const data = [0.1,0.4,1.0,1.7,2.2,2.5,2.3,2.1,1.8,1.4,1.0];
+      const chart = new Chart(ctx, {
+        type: "line",
+        data: { labels, datasets: [{ data, borderColor: "#12a36a", tension: 0.36, pointRadius: 3, fill: true }]},
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins:{legend:{display:false}, tooltip:{backgroundColor:"#fff", titleColor:"#111", bodyColor:"#333", borderColor:"#e6e6e6", borderWidth:1}},
+          scales:{ x:{grid:{display:false}, ticks:{color:"#9aa4a0"}}, y:{beginAtZero:true, suggestedMax:3, grid:{color:"#e6e9e6", borderDash:[3,6]}, ticks:{color:"#9aa4a0"}}}
+        }
+      });
+      // gradient fill for dataset
+      const grad = ctx.createLinearGradient(0,0,0,260);
+      grad.addColorStop(0, "rgba(18,163,106,0.08)");
+      grad.addColorStop(1, "rgba(18,163,106,0.02)");
+      chart.data.datasets[0].backgroundColor = grad;
+      chart.update();
+
+      // gauge needles
+      function setNeedle(id, pct){
+        const deg = pct/100*180 - 90;
+        const el = document.getElementById(id);
+        if(el) el.style.transform = `rotate(${deg}deg)`;
+      }
+      setNeedle("g1needle", 35);
+      setNeedle("g2needle", 25);
+
+      // meter pulse
+      const meterValue = document.getElementById("meterValue");
+      setInterval(()=> {
+        meterValue.style.transform = "scale(1.03)";
+        setTimeout(()=> meterValue.style.transform = "scale(1)", 600);
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
