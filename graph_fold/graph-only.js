@@ -1,3 +1,10 @@
+// Chart initialization for the PV line chart.
+// This file supports two contexts:
+// - Embedded in the main page: canvas id `pvGraph` (preferred)
+// - Standalone demo page: canvas id `pvOnly`
+// The script waits for DOMContentLoaded, finds the available canvas,
+// creates a Chart.js line chart and exposes it as `window._pvChart` so
+// other scripts (resize logic, toggles) can access or destroy it.
 document.addEventListener('DOMContentLoaded', ()=>{
   // support both standalone page (`pvOnly`) and embedded page (`pvGraph`)
   const canvasId = document.getElementById('pvGraph') ? 'pvGraph' : (document.getElementById('pvOnly') ? 'pvOnly' : null);
@@ -69,7 +76,24 @@ document.addEventListener('DOMContentLoaded', ()=>{
     interaction:{mode:'index',intersect:false}
   };
 
+  // Create Chart.js instance for PV data (line chart)
   const chart = new Chart(ctx,{type:'line',data:data,options:options});
+
+  // Expose the chart instance on `window` so the page script can
+  // call `window._pvChart.resize()` or destroy it when switching views.
+  window._pvChart = chart;
+
+  // Add a ResizeObserver on the chart container. When the parent size
+  // changes (for example when the layout changes or the user resizes
+  // the window), call Chart.resize() to keep rendering crisp and
+  // to allow Chart.js to recalc pixel ratio / scales.
+  try{
+    const parent = canvasEl.parentElement;
+    if(window.ResizeObserver && parent){
+      const ro = new ResizeObserver(()=>{ try{ chart.resize(); }catch(e){} });
+      ro.observe(parent);
+    }
+  }catch(e){}
 
   // helper: create tooltip element
   function getOrCreateTooltip(context){

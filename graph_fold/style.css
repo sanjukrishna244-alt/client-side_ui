@@ -82,6 +82,74 @@ body {
   align-items: center;
 }
 
+/* Redesigned chart header to match provided image */
+.chart-header{padding:12px 8px;border-radius:8px}
+.chart-header{background:#073e36;padding:12px 14px;border-radius:8px;color:#cdeee4}
+.ch-left{display:flex;flex-direction:column;gap:8px}
+.ch-left h4{margin:0;color:#79e9d4;font-weight:600;font-size:14px}
+.inv-model{color:#a7efe4;font-size:13px;margin-top:2px}
+
+.chart-tabs{display:flex;align-items:center;gap:8px;margin-top:6px}
+.chart-tabs .tab{padding:6px 10px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfeee6;font-size:13px}
+.chart-tabs .tab:hover{background:rgba(255,255,255,0.03)}
+.chart-tabs .tab.active{background:#10b981;color:#042b24;border-color:#10b981}
+
+.dropdown-wrapper{position:relative}
+.dropdown-wrapper .tab{display:flex;align-items:center;gap:8px}
+.dropdown-menu{min-width:150px;position:absolute;left:0;top:calc(100% + 8px);display:none;background:#0b3f36;color:#e6fff7;padding:6px;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,0.45);z-index:40}
+.dropdown-wrapper.open .dropdown-menu{display:block}
+.dropdown-menu .dd-item{padding:8px 10px;border-radius:6px;cursor:pointer}
+.dropdown-menu .dd-item:hover{background:rgba(255,255,255,0.03)}
+
+.ch-right{display:flex;align-items:center;gap:12px}
+.tools{display:flex;gap:8px;align-items:center}
+.tools .ico{font-size:16px;color:rgba(255,255,255,0.85);padding:6px;border-radius:6px;background:transparent}
+
+.view-mode{display:flex;gap:6px;align-items:center}
+.view-mode .vm{padding:6px 10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfeee6;font-size:13px}
+.view-mode .vm.active{background:#10b981;color:#042b24;border-color:#10b981}
+
+/* make date box compact */
+.date-box{display:flex;align-items:center;gap:8px}
+.date-box input{border:none;padding:6px 10px;border-radius:10px;background:#ffffff;color:#042b24;font-size:13px}
+.date-box input::-webkit-calendar-picker-indicator{filter:invert(0)}
+.date-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff;padding:6px 8px;border-radius:6px}
+.download{background:transparent;padding:6px;border-radius:6px}
+
+.date-box{display:flex;align-items:center;gap:6px}
+.date-box input{border:none;padding:8px 10px;border-radius:10px;background:#fff;color:#000}
+.date-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff;padding:6px 8px;border-radius:6px}
+.download{background:transparent;padding:6px;border-radius:6px}
+
+/* ensure header elements don't overflow */
+.chart-header .ch-left,.chart-header .ch-right{min-width:0}
+
+/* Canvas sizing for charts */
+.chart-container{display:flex;flex-direction:column;min-height:420px;height:70vh}
+.chart-panel{flex:1;display:flex;align-items:stretch;justify-content:center;padding:10px}
+.chart-panel canvas{width:100% !important;height:100% !important;display:block}
+#exactGraph{display:none}
+
+/* Responsive tweaks */
+@media (max-width:1200px){
+  .chart-container{height:65vh}
+  .chart-header h4{font-size:13px}
+}
+
+@media (max-width:800px){
+  .chart-container{height:60vh}
+  .chart-header{padding:10px}
+  .chart-tabs .tab{font-size:12px;padding:6px 8px}
+  .view-mode{display:none}
+}
+
+@media (max-width:480px){
+  .chart-container{height:55vh}
+  .chart-header{padding:8px}
+  .chart-tabs{gap:6px}
+  .date-box input{padding:6px}
+}
+
 .ch-left h4 {
   margin: 0;
   font-size: 16px;

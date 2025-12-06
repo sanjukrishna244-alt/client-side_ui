@@ -34,7 +34,7 @@
               <div class="dd-item">Yearly Power</div>
             </div>
           </div>
-          <button class="tab">Generation & Income</button>
+          <button id="genBtn" class="tab">Generation & Income</button>
         </div>
       </div>
 
@@ -44,10 +44,17 @@
           <span class="ico">📊</span>
         </div>
 
+        <!-- View mode (Day/Month/Year) -->
+        <div class="view-mode" role="tablist" aria-label="View mode">
+          <button class="vm" type="button">Day</button>
+          <button class="vm active" type="button">Month</button>
+          <button class="vm" type="button">Year</button>
+        </div>
+
         <div class="date-box">
           <button class="date-btn">◀</button>
           <input type="date" value="2025-02-12">
-          <button class="date-btn">▶</button>
+          <button class="date-btn">▶</button> 
         </div>
 
         <div class="download">📥</div>
@@ -57,6 +64,7 @@
     <!-- ACTUAL GRAPH PANEL -->
     <div class="chart-panel">
       <canvas id="pvGraph"></canvas>
+        <canvas id="exactGraph" style="display:none"></canvas>
     </div>
 
   </main>
@@ -94,7 +102,158 @@
       menu.setAttribute('aria-hidden','true');
     }
   });
-})();
+  })();
+
+  /*
+    Generation & Income chart (bar + line)
+    --------------------------------------
+    When the user clicks the `Generation & Income` tab we:
+    - hide the default PV canvas (`#pvGraph`)
+    - show the `#exactGraph` canvas
+    - (re)create a Chart.js instance for the combined bar+line chart
+    The created chart is stored as `window._exactChart` so the resize
+    handler and other scripts can access or destroy it later.
+  */
+  ;(function(){
+    const genBtn = document.getElementById('genBtn');
+    const pvCanvas = document.getElementById('pvGraph');
+    const exactCanvas = document.getElementById('exactGraph');
+    if(!genBtn || !exactCanvas || !pvCanvas) return;
+
+    function renderExactGraph(){
+      // Show the Generation & Income canvas and hide the PV canvas.
+      // We don't destroy the PV chart here, but we hide its canvas so
+      // the visible area is occupied by the exactGraph canvas.
+      pvCanvas.style.display = 'none';
+      exactCanvas.style.display = 'block';
+
+      // If a previous exact chart exists, destroy it first to avoid
+      // duplicate instances or memory leaks. Chart.js provides
+      // `.destroy()` to clean up event listeners and internals.
+      if(window._exactChart){
+        try{ window._exactChart.destroy(); }catch(e){}
+      }
+
+      const ctx = exactCanvas.getContext('2d');
+
+      const dates = [
+        "11.03.2025","12.03.2025","13.03.2025","14.03.2025","15.03.2025","16.03.2025",
+        "25.03.2025","26.03.2025","27.03.2025","28.03.2025","29.03.2025","30.03.2025",
+        "01.04.2025","02.04.2025","03.04.2025","04.04.2025","05.04.2025","06.04.2025",
+        "10.04.2025","11.04.2025","12.04.2025","13.04.2025","20.04.2025","25.04.2025"
+      ];
+
+      const barData = [
+        1800,2000,2300,2600,2700,2500,
+        900,1500,2200,2000,2600,2700,
+        2400,2200,1500,2300,2500,2800,
+        2600,1900,2400,2600,1400,2500
+      ];
+
+      const lineData = [
+        2000,2400,2900,3100,3000,2800,
+        1200,2100,2600,2400,3000,3200,
+        2900,2500,2100,2900,3100,3500,
+        3000,2200,3000,3200,2600,2900
+      ];
+
+      // Size the canvas to fill the chart panel. Chart.js is responsive
+      // (we set `maintainAspectRatio: false`) so it will use the element
+      // size as the drawing area. For responsiveness we rely on the
+      // shared resize handler (below) to call chart.resize().
+      exactCanvas.style.width = '100%';
+      exactCanvas.style.height = '420px';
+
+      // Save the created chart so other code can call `.resize()` or
+      // `.destroy()` on it later.
+      window._exactChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: dates,
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Bar Power',
+              data: barData,
+              backgroundColor: '#7bf8c2',
+              borderRadius: 4,
+              barThickness: 16
+            },
+            {
+              type: 'line',
+              label: 'Line Power',
+              data: lineData,
+              borderColor: '#4af7ff',
+              backgroundColor: '#4af7ff',
+              borderWidth: 2,
+              tension: 0.35,
+              pointRadius: 3,
+              pointBackgroundColor: '#ffffff',
+              pointBorderColor: '#4af7ff'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#ffffff',
+              titleColor: '#000',
+              bodyColor: '#000',
+              borderColor: '#4af7ff',
+              borderWidth: 1,
+              padding: 10
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#1a5f58', borderDash: [4,4] },
+              ticks: { color: '#74f7df' }
+            },
+            x: {
+              grid: { color: '#1a5f58', borderDash: [4,4] },
+              ticks: { color: '#74f7df', maxRotation: 90, minRotation: 90, font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    // Wire the tab/button: clicking it renders the Generation & Income
+    // visualization. You can change this to toggle back/forth if needed.
+    genBtn.addEventListener('click', function(){
+      renderExactGraph();
+    });
+
+  })();
+
+  // Resize handler to keep both charts fitting the container
+  (function(){
+    function resizeCharts(){
+      const pvChart = window._pvChart;
+      const exactChart = window._exactChart;
+      try{ if(pvChart && typeof pvChart.resize === 'function') pvChart.resize(); }catch(e){}
+      try{ if(exactChart && typeof exactChart.resize === 'function') exactChart.resize(); }catch(e){}
+    }
+
+    let t;
+    window.addEventListener('resize', function(){
+      clearTimeout(t); t = setTimeout(resizeCharts, 120);
+    });
+
+    // Observe container size changes (helps when layout changes, e.g., toggling canvases)
+    const container = document.querySelector('.chart-panel');
+    if(window.ResizeObserver && container){
+      const ro = new ResizeObserver(()=>{ resizeCharts(); });
+      ro.observe(container);
+    }
+
+    // initial call after small delay to allow charts to initialize
+    setTimeout(resizeCharts, 200);
+  })();
 </script>
 
 </body>

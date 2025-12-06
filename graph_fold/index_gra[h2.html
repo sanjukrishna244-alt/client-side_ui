@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Exact Bar + Line Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #013634;
+      font-family: Inter, sans-serif;
+      color: #fff;
+    }
+
+    .chart-box {
+      width: 100%;
+      height: 420px;
+      padding: 20px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chart-box">
+    <canvas id="exactGraph"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById("exactGraph").getContext("2d");
+
+    // Sample values (modify as needed)
+    const dates = [
+      "11.03.2025","12.03.2025","13.03.2025","14.03.2025","15.03.2025","16.03.2025",
+      "25.03.2025","26.03.2025","27.03.2025","28.03.2025","29.03.2025","30.03.2025",
+      "01.04.2025","02.04.2025","03.04.2025","04.04.2025","05.04.2025","06.04.2025",
+      "10.04.2025","11.04.2025","12.04.2025","13.04.2025","20.04.2025","25.04.2025"
+    ];
+
+    const barData = [
+      1800,2000,2300,2600,2700,2500,
+      900,1500,2200,2000,2600,2700,
+      2400,2200,1500,2300,2500,2800,
+      2600,1900,2400,2600,1400,2500
+    ];
+
+    const lineData = [
+      2000,2400,2900,3100,3000,2800,
+      1200,2100,2600,2400,3000,3200,
+      2900,2500,2100,2900,3100,3500,
+      3000,2200,3000,3200,2600,2900
+    ];
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: dates,
+        datasets: [
+          {
+            type: "bar",
+            label: "Bar Power",
+            data: barData,
+            backgroundColor: "#7bf8c2",
+            borderRadius: 4,
+            barThickness: 16
+          },
+          {
+            type: "line",
+            label: "Line Power",
+            data: lineData,
+            borderColor: "#4af7ff",
+            backgroundColor: "#4af7ff",
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 3,
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#4af7ff"
+          }
+        ]
+      },
+
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        plugins: {
+          legend: { display: false },
+
+          tooltip: {
+            backgroundColor: "#ffffff",
+            titleColor: "#000",
+            bodyColor: "#000",
+            borderColor: "#4af7ff",
+            borderWidth: 1,
+            padding: 10
+          }
+        },
+
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: "#1a5f58",     // dotted grid color
+              borderDash: [4, 4]
+            },
+            ticks: {
+              color: "#74f7df"
+            }
+          },
+
+          x: {
+            grid: {
+              color: "#1a5f58",
+              borderDash: [4, 4]
+            },
+            ticks: {
+              color: "#74f7df",
+              maxRotation: 90,
+              minRotation: 90,
+              font: { size: 11 }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
