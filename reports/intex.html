@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Data Export</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Using Google Fonts for a premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header / Navigation -->
+        <div class="header-section">
+            <div class="nav-tabs">
+                <button class="nav-btn active">Plant/SN</button>
+                <button class="nav-btn">Location</button>
+                <button class="nav-btn">Organization</button>
+            </div>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Please enter plant / SN / email">
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-container">
+            <!-- Row 1: Data Type -->
+            <div class="filter-row">
+                <label class="filter-label">Data Type:</label>
+                <div class="radio-group">
+                    <label class="radio-item selected">
+                        <input type="radio" name="dataType" checked>
+                        <span class="custom-radio"></span>
+                        Real-Time Parameters
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="dataType">
+                        <span class="custom-radio"></span>
+                        Energy Analysis
+                    </label>
+                </div>
+            </div>
+
+            <!-- Row 2: Time Selection -->
+            <div class="filter-row">
+                <label class="filter-label">Time Selection:</label>
+                <div class="time-input-wrapper">
+                    <i class="fa-regular fa-clock"></i>
+                    <input type="text" value="12.06.2025 00:00:00 -- 12.06.2025 15:40:34" readonly>
+                </div>
+            </div>
+
+            <!-- Row 3: Output Format -->
+            <div class="filter-row">
+                <label class="filter-label">Output Format:</label>
+                <div class="radio-group">
+                    <label class="radio-item selected">
+                        <input type="radio" name="outputFormat" checked>
+                        <span class="custom-radio"></span>
+                        Excel
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="outputFormat">
+                        <span class="custom-radio"></span>
+                        Curve <span class="note">(You Can Only Select The Indicator With No More Than 2 Units After
+                            Selecting The Curve.)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Columns -->
+        <div class="content-columns">
+            <!-- Column 1: Inverter Selection -->
+            <div class="column-card">
+                <div class="card-header">
+                    <h2>Inverter Selection</h2>
+                </div>
+                <div class="card-body">
+                    <button class="action-btn-outline full-width">
+                        <i class="fa-solid fa-file-circle-plus"></i> Select the inverter
+                    </button>
+
+                    <div class="tree-view">
+                        <!-- Open Group -->
+                        <div class="tree-item expanded">
+                            <i class="fa-solid fa-angle-down toggle-icon"></i>
+                            <span class="status-dot green"></span>
+                            <span class="item-name">BINU</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-item selected-item">
+                                <span class="status-dot green"></span>
+                                <span class="item-name">GW3300-XS</span>
+                            </div>
+                            <div class="tree-sub-item active-sub">
+                                <div class="sub-item-box">
+                                    53300SSX228W1357
+                                </div>
+                                <i class="fa-solid fa-file-import add-icon"></i>
+                            </div>
+                        </div>
+
+                        <!-- Closed Groups -->
+                        <div class="tree-item">
+                            <i class="fa-solid fa-angle-right toggle-icon"></i>
+                            <span class="item-name">Biju Ramachandran</span>
+                        </div>
+                        <div class="tree-item">
+                            <i class="fa-solid fa-angle-right toggle-icon"></i>
+                            <span class="status-dot green"></span>
+                            <span class="item-name">CAPITAL ASSOCIATES</span>
+                        </div>
+                        <div class="tree-item">
+                            <i class="fa-solid fa-angle-right toggle-icon"></i>
+                            <span class="item-name">DR KASIM</span>
+                        </div>
+                        <div class="tree-item">
+                            <i class="fa-solid fa-angle-right toggle-icon"></i>
+                            <span class="item-name">DR RAVI</span>
+                        </div>
+                        <div class="tree-item">
+                            <i class="fa-solid fa-angle-right toggle-icon"></i>
+                            <span class="item-name">GIRIJA</span>
+                        </div>
+                        <div class="tree-item">
+                            <i class="fa-solid fa-angle-right toggle-icon"></i>
+                            <span class="status-dot green"></span>
+                            <span class="item-name">HARIS</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Scrollbar indicator simulation -->
+                <div class="scroll-indicator"></div>
+            </div>
+
+            <!-- Column 2: Inverter (Selected) -->
+            <div class="column-card">
+                <div class="card-header flex-between">
+                    <h2>Inverter</h2>
+                    <a href="#" class="clear-all">Clear All</a>
+                </div>
+                <div class="card-body">
+                    <button class="action-btn-outline full-width">
+                        <i class="fa-solid fa-trash-can"></i> Select the Inverter
+                    </button>
+
+                    <div class="selected-list">
+                        <div class="tree-item expanded">
+                            <span class="status-dot green"></span>
+                            <span class="item-name">BINU</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-item">
+                                <span class="status-dot green"></span>
+                                <span class="item-name">GW3300-XS</span>
+                            </div>
+                            <div class="tree-sub-item active-sub">
+                                <div class="sub-item-box">
+                                    53300SSX228W1357
+                                </div>
+                                <i class="fa-solid fa-trash-can delete-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: Indicator -->
+            <div class="column-card">
+                <div class="card-header flex-between">
+                    <h2>Indicator</h2>
+                    <div class="header-actions">
+                        <a href="#" class="select-all">Select All</a>
+                        <a href="#" class="clear-all">Clear All</a>
+                    </div>
+                </div>
+                <div class="info-banner">
+                    If you want to see the curve, please select the indicator that does not exceed 2 units.
+                </div>
+                <div class="card-body scrollable-body">
+                    <div class="checkbox-list">
+                        <label class="checkbox-item"><input type="checkbox"> V MPPT 1 (A)</label>
+                        <label class="checkbox-item"><input type="checkbox"> I MPPT 1 (A)</label>
+                        <label class="checkbox-item"><input type="checkbox"> Ua (V)</label>
+                        <label class="checkbox-item"><input type="checkbox"> I AC 1 (A)</label>
+                        <label class="checkbox-item"><input type="checkbox"> F AC 1 (Hz)</label>
+                        <label class="checkbox-item"><input type="checkbox"> Power (W)</label>
+                        <label class="checkbox-item"><input type="checkbox"> Working Mode</label>
+                        <label class="checkbox-item"><input type="checkbox"> Temperature (*C)</label>
+                        <label class="checkbox-item"><input type="checkbox"> Total Generation (kWh)</label>
+                        <label class="checkbox-item"><input type="checkbox"> H Total (h)</label>
+                        <label class="checkbox-item"><input type="checkbox"> RSSI</label>
+                        <label class="checkbox-item"><input type="checkbox"> PF</label>
+                    </div>
+                </div>
+                <div class="card-footer actions-right">
+                    <button class="btn btn-secondary">Reset</button>
+                    <button class="btn btn-primary">Generate Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

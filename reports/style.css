@@ -1,0 +1,453 @@
+:root {
+    --primary-color: #00bc9c;
+    --primary-dark: #00a388;
+    --secondary-color: #f7f8fa;
+    --text-color: #333333;
+    --text-light: #666666;
+    --border-color: #e0e0e0;
+    --green-status: #72c045;
+    --red-danger: #e74c3c;
+    --white: #ffffff;
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: var(--text-color);
+    font-size: 14px;
+    padding: 20px;
+}
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Header Section */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    background: var(--white);
+    border-radius: var(--radius);
+    color: var(--text-light);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-icon {
+    color: #aaa;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-color);
+}
+
+/* Filters Section */
+.filters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    min-width: 100px;
+    font-weight: 600;
+    color: #555;
+    text-align: right;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #555;
+}
+
+.radio-item input[type="radio"] {
+    accent-color: var(--primary-color);
+    width: 16px;
+    height: 16px;
+}
+
+.time-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    gap: 10px;
+    width: 350px;
+    background: var(--white);
+}
+
+.time-input-wrapper i {
+    color: #aaa;
+}
+
+.time-input-wrapper input {
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #555;
+}
+
+.note {
+    font-size: 12px;
+    color: #888;
+    margin-left: 5px;
+}
+
+/* Content Columns */
+.content-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    min-height: 500px;
+}
+
+.column-card {
+    background: var(--secondary-color);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 12px 15px;
+    /* background: #f0f2f5; */
+    border-bottom: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.card-header h2 {
+    font-size: 16px;
+    color: #444;
+}
+
+.clear-all,
+.select-all {
+    font-size: 12px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.info-banner {
+    background: #ffffff;
+    padding: 10px 15px;
+    font-size: 11px;
+    color: #888;
+    border-bottom: 1px solid #eee;
+    line-height: 1.4;
+    text-align: center;
+    margin: 10px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.card-body {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-btn-outline {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: #777;
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.action-btn-outline:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.action-btn-outline i {
+    margin-right: 5px;
+    color: var(--primary-color);
+    /* Green icon */
+}
+
+.column-card:nth-child(2) .action-btn-outline i {
+    color: var(--red-danger);
+    /* Red Trash icon */
+}
+
+
+/* Tree View */
+.tree-view,
+.selected-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tree-item,
+.tree-sub-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    gap: 8px;
+}
+
+.tree-item:hover {
+    color: var(--primary-color);
+}
+
+.toggle-icon {
+    width: 15px;
+    font-size: 12px;
+    color: #444;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.green {
+    background-color: var(--green-status);
+}
+
+.tree-children {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #e0e0e0;
+    margin-left: 7px;
+}
+
+.tree-sub-item.active-sub {
+    background: transparent;
+}
+
+.sub-item-box {
+    border: 1px solid var(--primary-color);
+    color: #555;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    background: rgba(0, 188, 156, 0.05);
+}
+
+.add-icon {
+    color: var(--primary-color);
+    margin-left: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    color: var(--red-danger);
+    margin-left: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Indicators */
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+    accent-color: var(--primary-color);
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+
+/* Card Footer */
+.card-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    /* Align to right as per typical layout, usually footer is outside columns in main, but image shows footer in right column OR bottom of page. 
+    Correction: Image shows "Reset" and "Generate Data" at the BOTTOM RIGHT of the Indicators panel. */
+    margin-top: auto;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.btn-secondary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Specific button styles from image */
+/* Reset and Generate Data are both distinct green in image */
+.btn-secondary {
+    background-color: var(--primary-color);
+}
+
+/* Scrollbar styling for Webkit */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .content-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .header-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar {
+        max-width: 100%;
+    }
+
+    .filter-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .time-input-wrapper {
+        width: 100%;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hidden {
+    display: none !important;
+}
