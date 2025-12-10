@@ -335,4 +335,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.btn-primary').addEventListener('click', () => {
         alert("Generating Data...");
     });
+
+    // toggle time selection
+    const dataTypeRadios = document.querySelectorAll('input[name="dataType"]');
+    const timeRealTime = document.getElementById('time-selection-realtime');
+    const timeEnergy = document.getElementById('time-selection-energy');
+
+    dataTypeRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            // "Real-Time Parameters" is the first one (index 0 usually, or check label)
+            // Based on HTML structure: First radio is Real-Time, Second is Energy Analysis
+            // Let's check the parent label text or just index if consistent
+
+            const labelText = e.target.closest('.radio-item').textContent.trim();
+
+            if (labelText.includes("Real-Time Parameters")) {
+                timeRealTime.classList.remove('hidden');
+                timeEnergy.classList.add('hidden');
+            } else {
+                timeRealTime.classList.add('hidden');
+                timeEnergy.classList.remove('hidden');
+            }
+        });
+    });
 });

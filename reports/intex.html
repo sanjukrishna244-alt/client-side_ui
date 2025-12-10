@@ -47,11 +47,41 @@
             </div>
 
             <!-- Row 2: Time Selection -->
-            <div class="filter-row">
+            <div class="filter-row" id="time-selection-realtime">
                 <label class="filter-label">Time Selection:</label>
                 <div class="time-input-wrapper">
                     <i class="fa-regular fa-clock"></i>
                     <input type="text" value="12.06.2025 00:00:00 -- 12.06.2025 15:40:34" readonly>
+                </div>
+            </div>
+
+            <div class="filter-row hidden" id="time-selection-energy">
+                <label class="filter-label">Time Selection:</label>
+                <div class="energy-time-group">
+                    <label class="radio-item">
+                        <input type="radio" name="timePeriod" value="day" checked>
+                        <span class="custom-radio"></span> Day
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="timePeriod" value="month">
+                        <span class="custom-radio"></span> Month
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="timePeriod" value="year">
+                        <span class="custom-radio"></span> Year
+                    </label>
+
+                    <div class="date-range-inputs">
+                        <div class="date-input-box">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="text" value="11.08.2025">
+                        </div>
+                        <span class="range-separator">--</span>
+                        <div class="date-input-box">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="text" value="12.08.2025">
+                        </div>
+                    </div>
                 </div>
             </div>
 

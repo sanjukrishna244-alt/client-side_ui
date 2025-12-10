@@ -157,6 +157,46 @@ body {
     color: #555;
 }
 
+.energy-time-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.date-range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-input-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    background: var(--white);
+    width: 140px;
+    gap: 8px;
+}
+
+.date-input-box i {
+    color: #aaa;
+}
+
+.date-input-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #555;
+    font-size: 14px;
+}
+
+.range-separator {
+    color: #aaa;
+}
+
 .note {
     font-size: 12px;
     color: #888;
