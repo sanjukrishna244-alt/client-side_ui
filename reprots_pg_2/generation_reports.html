@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generation Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_generation_reports.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-item">
+                    <div class="menu-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        <span>Historical Data</span>
+                    </div>
+                </div>
+                <!-- Collapsed submenu for data selection since we are on reports page -->
+                <div class="submenu plain">
+                    <a href="index.html" class="submenu-item" style="text-decoration: none; display: block;">Data
+                        Selection</a>
+                    <a href="index_1.html" class="submenu-item" style="text-decoration: none; display: block;">My
+                        Template</a>
+                </div>
+
+                <div class="menu-item active">
+                    <div class="menu-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span>Generation Reports</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Statistics</span>
+                    </div>
+                </div>
+                <div class="submenu plain">
+                    <div class="submenu-item">Monthly</div>
+                    <div class="submenu-item">Annual</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+
+                <!-- Helper Tab -->
+                <div class="gen-tabs-container">
+                    <div class="gen-tab">Plant</div>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="search-group">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Please enter plant / SN / email">
+                    </div>
+
+                    <select class="filter-select">
+                        <option>Daily Report</option>
+                        <option>Monthly Report</option>
+                        <option>Annual Report</option>
+                        <option>User-defined Report</option>
+                        <option>Simulation Report</option>
+                    </select>
+
+                    <input type="text" class="filter-date-input" placeholder="Please Select Date"
+                        onfocus="(this.type='date')" onblur="(this.type='text')">
+
+                    <div class="btns-container">
+                        <button class="btn-generate">Generate Report</button>
+                        <div class="export-btn-wrapper">
+                            <button class="btn-export-gray" id="btn-export">Export</button>
+                            <div class="export-popup" id="export-popup">
+                                <div class="popup-arrow"></div>
+                                <div class="popup-text">Daily report is only available for plants with load monitoring
+                                    function which is enabled by HomeKit or SEC1000.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Display Area -->
+                <div class="reports-display-area">
+                    <!-- SVG Illustration mimicking the empty document icon -->
+                    <div class="no-data-illustration">
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#bdbdbd" stroke-width="1">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="no-data-box">
+                        No Data
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnExport = document.getElementById('btn-export');
+            const popup = document.getElementById('export-popup');
+
+            btnExport.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                popup.classList.toggle('show');
+            });
+
+            // Close popup when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!popup.contains(e.target) && e.target !== btnExport) {
+                    popup.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

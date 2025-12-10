@@ -129,6 +129,13 @@ body {
     padding: 0 20px 20px 20px;
 }
 
+#view-data-selection,
+#view-my-template {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .filter-card {
     background-color: #fff;
     border-radius: 0 6px 6px 6px;
@@ -314,3 +321,5 @@ body {
         justify-content: flex-end;
     }
 }
+
+/* My Template View Styles */

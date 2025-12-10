@@ -1,0 +1,210 @@
+/* Main Layout overrides */
+.content-wrapper {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Tab Navigation */
+.gen-tabs-container {
+    padding: 10px 20px 0 20px;
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f5f6fa;
+}
+
+.gen-tab {
+    padding: 8px 30px;
+    background-color: #00bfa5;
+    color: #fff;
+    border-radius: 6px 6px 0 0;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    padding: 15px 20px;
+    gap: 15px;
+    align-items: center;
+    background-color: #f5f6fa;
+    flex-wrap: wrap;
+}
+
+.search-group {
+    position: relative;
+    flex: 1;
+    /* Grow to fill space or set fixed width */
+    min-width: 200px;
+    max-width: 350px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 10px 8px 30px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 13px;
+    color: #757575;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    color: #9e9e9e;
+}
+
+.filter-select,
+.filter-date-input {
+    padding: 8px 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #757575;
+    background-color: #fff;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+.btns-container {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    /* Push to right */
+}
+
+.btn-generate {
+    background-color: #00bfa5;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-generate:hover {
+    background-color: #008f7a;
+}
+
+.btn-export-gray {
+    background-color: #bdbdbd;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-export-gray:hover {
+    background-color: #9e9e9e;
+}
+
+/* Main Display Area */
+.reports-display-area {
+    margin: 0 20px 20px 20px;
+    background-color: #fff;
+    border-radius: 6px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    align-items: center;
+    position: relative;
+}
+
+.no-data-illustration {
+    margin-top: 50px;
+    opacity: 0.2;
+    margin-bottom: 50px;
+}
+
+.no-data-box {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: auto;
+    /* Push to bottom or just place statically */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-group,
+    .filter-select,
+    .filter-date-input {
+        max-width: none;
+        width: 100%;
+    }
+
+    .btns-container {
+        margin-left: 0;
+        justify-content: space-between;
+    }
+}
+
+/* Export Popup Styles */
+.export-btn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.export-popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    /* 10px spacing below button */
+    right: 0;
+    width: 320px;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    /* Subtle border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Drop shadow */
+    padding: 15px;
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.export-popup.show {
+    display: block;
+}
+
+.popup-arrow {
+    position: absolute;
+    top: -6px;
+    right: 30px;
+    /* Align near the button center approx */
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-left: 1px solid #dcdcdc;
+    border-top: 1px solid #dcdcdc;
+    transform: rotate(45deg);
+}
+
+.popup-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}

@@ -59,3 +59,4 @@ Future-ready API fetch placeholders
 Even though the data is currently presented with dummy JSON objects,
 the file already contains API placeholders, meaning you can instantly plug in:
 
+https://technopark.in/job-details/25787?job=MERN%20STACK%20DEVELOPER%20-%20Trainees
