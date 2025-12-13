@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generation Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Please enter plant / SN / email" class="sidebar-search">
+                </div>
+            </div>
+            <ul class="user-list">
+                <li class="user-item active">
+                    <span class="user-name">BINU</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">Biju Ramachandran</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">CAPITAL ASSOCIATES</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">DR KASIM</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">DR RAVI</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">GIRIJA</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">Hyfa</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">HARIS</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">Junaid Thalassery</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">KRISHNAN</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">KRISHNAN</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">Karthika</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">MAKKAL</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">MITHUN</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">MOHAMMAD</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">MOHAMMAD</span>
+                </li>
+                <li class="user-item">
+                    <span class="user-name">MOHAMMAD</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="date-picker-wrapper">
+                    <i class="fa-regular fa-calendar"></i>
+                    <input type="text" placeholder="Please Select Month" class="date-input">
+                </div>
+                <div class="spacer"></div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-generate">Generate Report</button>
+                    <button class="btn btn-secondary btn-export">Export</button>
+                </div>
+                <!-- Mobile toggle -->
+                <button class="btn-mobile-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </header>
+
+            <div class="content-area">
+                <div class="empty-state">
+                    <div class="empty-icon-container">
+                        <!-- Using a placeholder SVGs to mimic the paper icon -->
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="empty-svg">
+                            <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z"
+                                fill="#F0F0F0" stroke="#D0D0D0" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M14 2V8H20" stroke="#D0D0D0" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M16 13H8" stroke="#D0D0D0" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M16 17H8" stroke="#D0D0D0" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M10 9H8" stroke="#D0D0D0" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <!-- X eyes face -->
+                            <path d="M9 10L11 12M11 10L9 12" stroke="#A0A0A0" stroke-width="1.5" />
+                            <path d="M13 10L15 12M15 10L13 12" stroke="#A0A0A0" stroke-width="1.5" />
+                            <circle cx="12" cy="15" r="1" fill="#A0A0A0" />
+                        </svg>
+                    </div>
+                    <div class="data-container">
+                        <div class="data-header"></div>
+                        <div class="data-body">
+                            <p>No Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

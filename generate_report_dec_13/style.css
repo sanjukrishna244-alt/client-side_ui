@@ -1,0 +1,348 @@
+:root {
+    --primary-color: #00a082;
+    /* Teal Green */
+    --hover-color: #008f73;
+    --bg-color: #f5f5f5;
+    --sidebar-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #888888;
+    --border-color: #e0e0e0;
+    --secondary-btn-bg: #c0c0c0;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow: hidden;
+    /* Prevent body scroll, handle in containers */
+}
+
+/* Layout */
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.sidebar-search {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    outline: none;
+    font-size: 13px;
+    color: var(--text-color);
+    transition: border-color 0.2s;
+}
+
+.sidebar-search:focus {
+    border-color: var(--primary-color);
+}
+
+.user-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+    padding: 10px 0;
+}
+
+.user-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.user-item:hover,
+.user-item.active {
+    background-color: #f0fdf9;
+    /* Very light tint of primary if needed, or just white */
+}
+
+.user-item.active .user-name {
+    background-color: #e0f2f1;
+    color: #444;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.user-item .user-name {
+    display: inline-block;
+}
+
+/* Scrollbar for sidebar */
+.user-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 3px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    overflow: hidden;
+}
+
+.top-bar {
+    background-color: var(--bg-color);
+    /* Matches page bg */
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+}
+
+.date-picker-wrapper {
+    position: relative;
+    width: 220px;
+}
+
+.date-picker-wrapper i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.date-input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    outline: none;
+    font-size: 14px;
+    color: var(--text-color);
+    background: var(--white);
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-btn-bg);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: #a0a0a0;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-mobile-toggle {
+    display: none;
+    /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Content Area */
+.content-area {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.empty-state {
+    background-color: var(--white);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    /* Fixed height approximation from image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    padding: 40px;
+    position: relative;
+}
+
+.empty-icon-container {
+    margin-bottom: 40px;
+    opacity: 0.6;
+}
+
+.empty-svg {
+    width: 150px;
+    height: 150px;
+}
+
+.data-container {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-header {
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.data-body {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .top-bar {
+        gap: 10px;
+    }
+
+    .spacer {
+        display: none;
+        /* Remove spacer to let elements wrap naturally */
+    }
+
+    .action-buttons {
+        margin-left: auto;
+        /* Push to right */
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        position: relative;
+    }
+
+    .sidebar {
+        position: absolute;
+        left: -280px;
+        /* Hide off-screen */
+        top: 0;
+        bottom: 0;
+        box-shadow: var(--shadow-md);
+    }
+
+    .sidebar.active {
+        transform: translateX(280px);
+        left: -280px;
+        /* Keep base position, transform moves it in */
+    }
+
+    .btn-mobile-toggle {
+        display: block;
+    }
+
+    .top-bar {
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    .date-picker-wrapper {
+        width: 100%;
+        /* Full width on mobile */
+        order: 3;
+        /* Move below buttons */
+        margin-top: 10px;
+    }
+
+    .btn-search {
+        order: 4;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .action-buttons {
+        order: 2;
+        margin-left: 0;
+    }
+
+    .empty-state {
+        height: auto;
+        min-height: 400px;
+    }
+}
