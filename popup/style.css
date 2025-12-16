@@ -1,0 +1,182 @@
+:root {
+    --primary-green: #00A67E;
+    --light-green-bg: #F0FDF9;
+    --border-color: #E0E0E0;
+    --text-color: #333333;
+    --text-light: #666666;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    /* Background for demo visibility */
+}
+
+.popup-container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    width: 150px;
+    /* Fixed width for labels to align inputs */
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+    text-align: right;
+    margin-right: 30px;
+}
+
+.email-value {
+    color: #888;
+    font-size: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--primary-green);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-color);
+    outline: none;
+}
+
+input::placeholder {
+    color: #888;
+}
+
+/* Slide Drag Component */
+.slide-group .slide-container {
+    flex: 1;
+    height: 48px;
+    background-color: var(--light-green-bg);
+    border-radius: 6px;
+    /* Slightly squarer than pill */
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    border: 1px solid transparent;
+    /* To match input sizing if needed */
+}
+
+.slide-group label {
+    /* Empty label space to keep alignment if needed, or we can offset */
+    /* The design shows the specific spacing. The label 'Drag' is inside. */
+    /* Wait, the image doesn't have a label for Drag on the left? 
+       Actually looking closely at the image:
+       Email ...
+       Password ...
+       New ...
+       (Empty space) [ Slider ]
+       Verification code ...
+    */
+}
+
+/* Adjust slide group to align with inputs */
+.slide-group {
+    padding-left: 180px;
+    /* label width (150) + margin (30) */
+}
+
+.slide-handle {
+    width: 48px;
+    height: 48px;
+    background-color: var(--primary-green);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.slide-text {
+    width: 100%;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}
+
+/* Verification Code */
+.input-with-button {
+    flex: 1;
+    display: flex;
+    gap: 12px;
+}
+
+.btn-send {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0 24px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+    padding-left: 180px;
+    /* Align with inputs */
+    padding-left: 0;
+    /* Looks centered in the bottom area or aligned? Image shows they are offset to the right slightly? No, they seem mostly centered relative to the input block or just placed there. Let's center them in the container or align right? 
+    In the image, "Reset" and "Save Changes" are below the inputs. They seem aligned to the input column. Let's try to align them with the input column start.
+    */
+    padding-left: 180px;
+    justify-content: flex-start;
+}
+
+.btn-reset {
+    background-color: white;
+    border: 1px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-save {
+    background-color: var(--primary-green);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Typo fix in label if needed, image says "Verfication code" (sic) */

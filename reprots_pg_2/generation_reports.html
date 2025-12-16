@@ -110,14 +110,10 @@
                 <!-- Display Area -->
                 <div class="reports-display-area">
                     <!-- SVG Illustration mimicking the empty document icon -->
+                    <!-- SVG Illustration mimicking the empty document icon -->
                     <div class="no-data-illustration">
-                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#bdbdbd" stroke-width="1">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
+                        <!-- Placeholder for user asset -->
+                        <img src="../assets/report_area_icon.png" alt="No Data">
                     </div>
 
                     <div class="no-data-box">
@@ -153,36 +149,43 @@
 
             <!-- Body with Dual Panes -->
             <div class="ps-body">
-                <!-- Left Panel: Select Plant -->
-                <div class="ps-panel">
-                    <div class="ps-panel-header">
-                        <span>Select plant</span>
+                <div id="view-plant" style="display: flex; gap: 20px; width: 100%;">
+                    <!-- Left Panel: Select Plant -->
+                    <div class="ps-panel">
+                        <div class="ps-panel-header">
+                            <span>Select plant</span>
+                        </div>
+                        <div class="ps-helper-banner">
+                            To make the selection, click <svg
+                                style="width: 12px; height:12px; vertical-align: middle; fill:#00bfa5;"
+                                viewBox="0 0 24 24">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            </svg>
+                            <div class="ps-help-container">
+                                <span class="ps-help-icon">?</span>
+                                <div class="ps-note">
+                                    Daily report is only available for plants with load monitoring function which is
+                                    enabled by
+                                    HomeKit or SEC1000.
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ps-helper-banner">
-                        To make the selection, click <svg
-                            style="width: 12px; height:12px; vertical-align: middle; fill:#00bfa5;" viewBox="0 0 24 24">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                        </svg>
-                        <span style="float: right; cursor: pointer;">?</span>
-                    </div>
-                    <!-- Note box overlaid or positioned freely -->
-                    <div class="ps-note">
-                        Daily report is only available for plants with load monitoring function which is enabled by
-                        HomeKit or SEC1000.
-                    </div>
-                </div>
 
-                <!-- Right Panel: Selected List -->
-                <div class="ps-panel">
-                    <div class="ps-panel-header">
-                        <span>Selected list</span>
-                        <button class="btn-clear-all">Clear All</button>
-                    </div>
-                    <div class="ps-helper-banner">
-                        To cancel the selection, click <svg
-                            style="width: 12px; height:12px; vertical-align: middle; fill:#ff5722;" viewBox="0 0 24 24">
-                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                        </svg>
+                    <!-- Right Panel: Selected List -->
+                    <div class="ps-panel">
+                        <div class="ps-panel-header">
+                            <span>Selected list</span>
+                            <button class="btn-clear-all">Clear All</button>
+                        </div>
+                        <div class="ps-helper-banner" style="position: relative;">
+                            To cancel the selection, click <svg
+                                style="width: 12px; height:12px; vertical-align: middle; fill:#ff5722;"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -236,6 +239,102 @@
                 btnConfirm.addEventListener('click', () => {
                     modalOverlay.classList.remove('show');
                 });
+            }
+
+            // === NEW: Wire up the main page "Plant" tab to open the modal ===
+            // Finding the element with class 'gen-tab' that says "Plant"
+            const genTabs = document.querySelectorAll('.gen-tab');
+            genTabs.forEach(tab => {
+                if (tab.textContent.trim() === 'Plant') {
+                    tab.addEventListener('click', () => {
+                        modalOverlay.classList.add('show');
+                    });
+                }
+            });
+
+            // === NEW: Tab switching logic inside the modal ===
+            const psTabs = document.querySelectorAll('.ps-tab');
+            const viewPlant = document.getElementById('view-plant');
+
+            psTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 1. Remove active class from all
+                    psTabs.forEach(t => t.classList.remove('active'));
+                    // 2. Add active class to clicked
+                    tab.classList.add('active');
+
+                    // 3. Logic to show/hide content
+                    // Per user request, displays the same #view-plant div for all tabs, but we update the title
+                    if (viewPlant) {
+                        viewPlant.style.display = 'flex';
+
+                        // Update the header text to match the tab
+                        // e.g., "Select plant", "Select SN"
+                        const panelHeader = viewPlant.querySelector('.ps-panel-header span');
+                        if (panelHeader) {
+                            // Convert tab text to appropriate case (e.g. "Select Plant")
+                            // Keeping it simple: "Select " + tab text
+                            panelHeader.textContent = `Select ${tab.textContent.trim()}`;
+                        }
+                    }
+                });
+            });
+
+            // === NEW: Toggle Tooltip on Click ===
+            const helpIcon = document.querySelector('.ps-help-icon');
+            const helpNote = document.querySelector('.ps-note');
+
+            if (helpIcon && helpNote) {
+                helpIcon.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent bubbling
+                    helpNote.classList.toggle('show');
+                });
+
+                // Optional: Close when clicking elsewhere
+                document.addEventListener('click', (e) => {
+                    if (!helpIcon.contains(e.target) && !helpNote.contains(e.target)) {
+                        helpNote.classList.remove('show');
+                    }
+                });
+            }
+
+            // === NEW: Report Type Selection Logic ===
+            const filterSelect = document.querySelector('.filter-select');
+            const reportsDisplayArea = document.querySelector('.reports-display-area');
+
+            // Helper to set up the default view (No Data)
+            // We ensure the content matches the "No Data" UI structure
+            function showNoDataUI() {
+                // Ensure the No Data UI is visible/present
+                // For now, we assume the static HTML IS the No Data UI. 
+                // We just make sure the area is visible.
+                if (reportsDisplayArea) {
+                    reportsDisplayArea.style.display = 'flex';
+                }
+            }
+
+            function hideNoDataUI() {
+                // Determine what to do for other options. User said "User-defined" and "Simulation" have separate UI.
+                // Since we don't have that UI yet, we might hide this area or clear it.
+                if (reportsDisplayArea) {
+                    reportsDisplayArea.style.display = 'none';
+                }
+            }
+
+            if (filterSelect) {
+                filterSelect.addEventListener('change', () => {
+                    const value = filterSelect.value;
+                    // "Daily Report", "Monthly Report", "Annual Report" -> Show
+                    if (value === 'Daily Report' || value === 'Monthly Report' || value === 'Annual Report') {
+                        showNoDataUI();
+                    } else {
+                        // "User-defined Report", "Simulation Report" -> Hide (or switch to other UI)
+                        hideNoDataUI();
+                    }
+                });
+
+                // Trigger once on load to set initial state
+                filterSelect.dispatchEvent(new Event('change'));
             }
         });
     </script>

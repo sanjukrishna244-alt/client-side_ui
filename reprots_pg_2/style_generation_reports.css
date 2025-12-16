@@ -126,8 +126,15 @@
 
 .no-data-illustration {
     margin-top: 50px;
-    opacity: 0.2;
+    opacity: 1;
+    /* Changed from 0.2 to 1 so the image and shadow are fully visible */
     margin-bottom: 50px;
+}
+
+.no-data-illustration img {
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    width: 140px;
+    height: auto;
 }
 
 .no-data-box {
@@ -140,7 +147,9 @@
     font-size: 14px;
     font-weight: 500;
     margin-top: auto;
-    /* Push to bottom or just place statically */
+    /* Pushes to bottom of flex container */
+    background-color: #fff;
+    /* Ensure bg is white */
 }
 
 /* Responsive */
@@ -327,27 +336,105 @@
 /* Helper banners inside panels */
 .ps-helper-banner {
     background-color: #fff;
-    border: 1px solid #e0e0e0;
+    border: 1px dashed #dcdcdc;
+    /* Dashed border */
     border-radius: 4px;
     padding: 10px;
     font-size: 12px;
     color: #9e9e9e;
     text-align: center;
     margin-bottom: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* removed shadow to match flat look */
+}
+
+/* Tooltip container wrapper (added in HTML) */
+.ps-help-container {
+    float: right;
+    position: relative;
+    cursor: pointer;
+}
+
+.ps-help-icon {
+    background-color: #757575;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 .ps-note {
+    display: none;
+    /* Hidden by default, shown on hover or permanently if desired */
     position: absolute;
-    top: 50px;
-    left: 20px;
-    right: 20px;
-    background-color: white;
+    top: 25px;
+    /* Below the icon */
+    right: -10px;
+    width: 300px;
+    background-color: #fff;
     padding: 10px;
-    font-size: 12px;
-    color: #666;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    font-size: 11px;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    text-align: left;
+    line-height: 1.4;
+}
+
+/* Show tooltip - assuming we want it visible for the demo or on hover. 
+   User image shows it visible. Let's make it visible by default or strictly associated. */
+.ps-help-container:hover .ps-note,
+.ps-help-container .ps-note.show {
+    display: block;
+}
+
+/* Tooltip Arrow */
+.ps-note::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 14px;
+    /* Aligns with the ? icon approx */
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    transform: rotate(45deg);
+}
+
+/* Selected Items (e.g. arjun) */
+.ps-list-container {
+    position: relative;
+}
+
+.ps-item {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+    /* spacing relative to the banner or other items */
+    position: absolute;
+}
+
+/* Specific style for the 'arjun' item as shown */
+.ps-item-arjun {
+    background-color: #ffca28;
+    /* Amber/Yellow color */
+    color: #333;
+    top: -15px;
+    /* Adjusting position to overlap/float as per image ("arjun" tag hanging) */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .ps-footer {
