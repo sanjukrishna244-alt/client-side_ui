@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Preference</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Using Inter font to match the premium feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Notification Preference Section -->
+        <h2>Notification Preference:</h2>
+        <span class="green-text">The setting will take effect in about 1 hour after completion.</span>
+
+        <div class="form-group">
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span class="checkbox-text">Email(Please note that the email may be in the junk mailbox.)</span>
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span class="checkbox-text">Message-Center</span>
+            </label>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Message Type Section -->
+        <h2>Message Type:</h2>
+
+        <!-- Row 1: Alarm Message -->
+        <div class="message-type-row">
+            <div class="message-label-col">Alarm Message</div>
+            <div class="message-controls-col">
+                <div class="toggle-group">
+                    <label class="radio-label">
+                        <input type="radio" name="alarm" value="on"> ON
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="alarm" value="off" checked> OFF
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: Generation Report -->
+        <div class="message-type-row">
+            <div class="message-label-col">Generation Report</div>
+            <div class="message-controls-col">
+                <div class="toggle-group">
+                    <label class="radio-label">
+                        <input type="radio" name="generation" value="on"> ON
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="generation" value="off" checked> OFF
+                    </label>
+                </div>
+                <div class="note-subtext">Generation report push function does not support the single retrofit inverter
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 3: Device Offline Notification -->
+        <div class="message-type-row">
+            <div class="message-label-col">Device Offline Notification</div>
+            <div class="message-controls-col">
+                <div class="toggle-group">
+                    <label class="radio-label">
+                        <input type="radio" name="offline" value="on"> ON
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="offline" value="off" checked> OFF
+                    </label>
+                </div>
+                <!-- Note the image says "for dataloggers in the EzloggerPro and SEC1000 series." -->
+                <div class="note-subtext">Device offline notification are only supported for dataloggers in the
+                    EzloggerPro and SEC1000 series.</div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <button class="btn btn-reset">Reset</button>
+            <button class="btn btn-save">Save Changes</button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

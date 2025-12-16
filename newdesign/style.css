@@ -1,0 +1,222 @@
+:root {
+    --primary-color: #00bc9c;
+    --primary-dark: #00a388;
+    --text-color: #333333;
+    --text-light: #666666;
+    --border-color: #e0e0e0;
+    --green-status: #72c045;
+    --white: #ffffff;
+    --background-bg: #f8f9fa;
+    --radius: 4px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--background-bg);
+    color: var(--text-color);
+    font-size: 14px;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Typography & Common */
+h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.green-text {
+    color: var(--primary-color);
+    font-size: 13px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 25px 0;
+    border: none;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+    color: #555;
+    font-size: 14px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-text {
+    color: #444;
+}
+
+/* Message Type Section */
+.message-type-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.message-label-col {
+    width: 250px;
+    font-size: 14px;
+    color: #444;
+    padding-top: 2px;
+}
+
+.message-controls-col {
+    flex: 1;
+}
+
+.toggle-group {
+    display: flex;
+    gap: 40px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+.radio-label input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin-right: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"]:checked {
+    border-color: #333;
+    /* The image shows black active dot for OFF, need careful check. Usually ON is primary. */
+}
+
+/* Checking image closely: 
+   "Alarm Message" -> OFF is selected (Black dot inside).
+   Radio style seems: 
+   Unchecked: Circle border.
+   Checked: Circle border + Dot inside.
+*/
+
+.radio-label input[type="radio"]::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s;
+}
+
+.radio-label input[type="radio"]:checked::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.note-subtext {
+    color: var(--primary-color);
+    font-size: 12px;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-reset {
+    background: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-reset:hover {
+    background: #f0fefa;
+}
+
+.btn-save {
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: white;
+}
+
+.btn-save:hover {
+    background: var(--primary-dark);
+}
