@@ -333,7 +333,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector('.btn-primary').addEventListener('click', () => {
-        alert("Generating Data...");
+        // 1. Capture Selected Indicators
+        const selectedIndicators = [];
+        const checkedBoxes = document.querySelectorAll('.checkbox-list input[type="checkbox"]:checked');
+
+        checkedBoxes.forEach(cb => {
+            // The text is in the parent label
+            selectedIndicators.push(cb.parentElement.textContent.trim());
+        });
+
+        // 2. Capture Time (Optional, but good for completeness based on UI)
+        // Accessing the read-only input from the "Real-Time" section as default
+        const timeValue = document.querySelector('.time-input-wrapper input').value;
+
+        // 3. Store in SessionStorage
+        const reportData = {
+            indicators: selectedIndicators,
+            time: timeValue
+        };
+        sessionStorage.setItem('reportData', JSON.stringify(reportData));
+
+        // 4. Navigate
+        window.location.href = '../reprots_pg_2/index.html';
     });
 
     // toggle time selection

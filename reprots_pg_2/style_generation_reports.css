@@ -465,3 +465,74 @@
     background-color: #00bfa5;
     /* Image shows green */
 }
+/* Plant Selection List Items */
+.ps-list-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 5px;
+}
+
+.ps-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.ps-list-item:hover {
+    background-color: #f5f6fa;
+}
+
+.ps-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ps-status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ps-status-dot.green {
+    background-color: #72c045; /* Green status */
+}
+
+.ps-item-name {
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+}
+
+.ps-action-icon {
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.ps-action-icon:hover {
+    transform: scale(1.1);
+}
+
+.ps-add-icon {
+    color: #00bfa5;
+}
+
+.ps-remove-icon {
+    color: #ff5722;
+}
+
+/* Scrollbar refinement for panels */
+.ps-list-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ps-list-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}

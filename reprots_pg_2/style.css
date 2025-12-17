@@ -252,6 +252,44 @@ body {
     background-color: #00796b;
 }
 
+.btn-primary {
+    background-color: #1976d2;
+    /* distinct blue for primary action, or use green if preferred, sticking to standard primary blue or theme green */
+    background-color: #00bfa5;
+    /* Keeping theme consistent */
+}
+
+.btn-primary:hover {
+    background-color: #008f7a;
+}
+
+/* Generated Data Table */
+.generated-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.generated-data-table th,
+.generated-data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 13px;
+    color: #333;
+}
+
+.generated-data-table th {
+    background-color: #f5f6fa;
+    font-weight: 700;
+    color: #616161;
+}
+
+.generated-data-table tr:hover {
+    background-color: #fafafa;
+}
+
 /* Data View / Empty State */
 .data-view-area {
     flex: 1;
@@ -323,3 +361,65 @@ body {
 }
 
 /* My Template View Styles */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.template-table-container {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.template-header-row {
+    display: flex;
+    background-color: #0b5e40;
+    /* Dark Green header */
+    color: #fff;
+    font-weight: 500;
+    padding: 15px 20px;
+    border-bottom: 1px solid #1a6d51;
+}
+
+.th-cell {
+    flex: 1;
+    font-size: 14px;
+    text-align: left;
+    padding: 0 10px;
+}
+
+/* First Column narrower */
+.th-cell:nth-child(1) {
+    flex: 0 0 80px;
+}
+
+/* Last Column narrower */
+.th-cell:nth-child(6) {
+    flex: 0 0 100px;
+}
+
+.template-body {
+    flex: 1;
+    background-color: #f1f2f7;
+    /* Light gray background for the body area as seen in typical data tables or empty states */
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .template-header-row {
+        display: none;
+        /* Hide header on mobile if we stack rows, or keep scalable */
+    }
+
+    .template-table-container {
+        border: 1px solid #e0e0e0;
+    }
+}

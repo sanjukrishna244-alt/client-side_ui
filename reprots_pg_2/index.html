@@ -103,6 +103,7 @@
                                 <input type="text" class="date-range-input"
                                     value="12.06.2025 00:00:00 -- 12.06.2025 15:40:34" readonly>
                                 <div class="button-group">
+                                    <button class="btn btn-primary" id="btn-generate-data">Generate Data</button>
                                     <button class="btn btn-save">Save Template</button>
                                     <button class="btn btn-export">Export</button>
                                 </div>
@@ -110,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="data-view-area">
+                    <div class="data-view-area" id="data-view-area">
                         <div class="empty-state-message">
                             <svg class="orange-icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" />
@@ -123,6 +124,93 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnGenerate = document.getElementById('btn-generate-data');
+            const dataViewArea = document.getElementById('data-view-area');
+            const checkboxContainer = document.querySelector('.checkbox-grid');
+            const dateRangeInput = document.querySelector('.date-range-input');
+
+            // 1. Check for Session Storage Data
+            const storedData = sessionStorage.getItem('reportData');
+            if (storedData) {
+                try {
+                    const data = JSON.parse(storedData);
+
+                    // Update Time
+                    if (data.time && dateRangeInput) {
+                        dateRangeInput.value = data.time;
+                    }
+
+                    // Update Indicators
+                    if (data.indicators && data.indicators.length > 0 && checkboxContainer) {
+                        checkboxContainer.innerHTML = ''; // Clear default static checkboxes
+
+                        data.indicators.forEach(indicator => {
+                            const label = document.createElement('label');
+                            label.className = 'checkbox-item';
+
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.checked = true; // Default to checked as they were selected
+
+                            label.appendChild(checkbox);
+                            label.appendChild(document.createTextNode(' ' + indicator));
+                            checkboxContainer.appendChild(label);
+                        });
+                    }
+                } catch (e) {
+                    console.error("Error parsing report data", e);
+                }
+            }
+
+            if (btnGenerate && dataViewArea && checkboxContainer) {
+                btnGenerate.addEventListener('click', () => {
+                    // 1. Get all checked checkboxes
+                    const checkedItems = checkboxContainer.querySelectorAll('input[type="checkbox"]:checked');
+
+                    if (checkedItems.length === 0) {
+                        alert("Please select at least one target parameter.");
+                        return;
+                    }
+
+                    // 2. Build Table HTML
+                    const headers = Array.from(checkedItems).map(input => {
+                        // Get the label text. The input is inside the label.
+                        return input.parentElement.textContent.trim();
+                    });
+
+                    // Timestamp header
+                    headers.unshift("Time");
+
+                    let tableHtml = '<table class="generated-data-table"><thead><tr>';
+                    headers.forEach(h => {
+                        tableHtml += `<th>${h}</th>`;
+                    });
+                    tableHtml += '</tr></thead><tbody>';
+
+                    // Generate dummy rows
+                    for (let i = 0; i < 5; i++) {
+                        tableHtml += '<tr>';
+                        // Time column
+                        tableHtml += `<td>2025-12-06 12:0${i}:00</td>`;
+
+                        // Data columns (dummy data)
+                        for (let j = 1; j < headers.length; j++) {
+                            tableHtml += `<td>${(Math.random() * 100).toFixed(2)}</td>`;
+                        }
+                        tableHtml += '</tr>';
+                    }
+                    tableHtml += '</tbody></table>';
+
+                    // 3. Inject into DOM
+                    dataViewArea.innerHTML = tableHtml;
+                    dataViewArea.style.alignItems = 'flex-start';
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

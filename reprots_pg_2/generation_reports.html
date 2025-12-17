@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_generation_reports.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -156,19 +158,18 @@
                             <span>Select plant</span>
                         </div>
                         <div class="ps-helper-banner">
-                            To make the selection, click <svg
-                                style="width: 12px; height:12px; vertical-align: middle; fill:#00bfa5;"
-                                viewBox="0 0 24 24">
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                            </svg>
+                            To make the selection, click <i class="fa-solid fa-file-circle-plus"
+                                style="color: #00bfa5;"></i>
                             <div class="ps-help-container">
                                 <span class="ps-help-icon">?</span>
                                 <div class="ps-note">
                                     Daily report is only available for plants with load monitoring function which is
-                                    enabled by
-                                    HomeKit or SEC1000.
+                                    enabled by HomeKit or SEC1000.
                                 </div>
                             </div>
+                        </div>
+                        <div class="ps-list-content" id="ps-source-list">
+                            <!-- Items will be injected here -->
                         </div>
                     </div>
 
@@ -176,15 +177,13 @@
                     <div class="ps-panel">
                         <div class="ps-panel-header">
                             <span>Selected list</span>
-                            <button class="btn-clear-all">Clear All</button>
+                            <button class="btn-clear-all" id="btn-clear-selection">Clear All</button>
                         </div>
                         <div class="ps-helper-banner" style="position: relative;">
-                            To cancel the selection, click <svg
-                                style="width: 12px; height:12px; vertical-align: middle; fill:#ff5722;"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                            </svg>
+                            To cancel the selection, click <i class="fa-solid fa-trash-can" style="color: #ff5722;"></i>
+                        </div>
+                        <div class="ps-list-content" id="ps-selected-list">
+                            <!-- Items will be injected here -->
                         </div>
                     </div>
                 </div>
@@ -303,19 +302,13 @@
             const reportsDisplayArea = document.querySelector('.reports-display-area');
 
             // Helper to set up the default view (No Data)
-            // We ensure the content matches the "No Data" UI structure
             function showNoDataUI() {
-                // Ensure the No Data UI is visible/present
-                // For now, we assume the static HTML IS the No Data UI. 
-                // We just make sure the area is visible.
                 if (reportsDisplayArea) {
                     reportsDisplayArea.style.display = 'flex';
                 }
             }
 
             function hideNoDataUI() {
-                // Determine what to do for other options. User said "User-defined" and "Simulation" have separate UI.
-                // Since we don't have that UI yet, we might hide this area or clear it.
                 if (reportsDisplayArea) {
                     reportsDisplayArea.style.display = 'none';
                 }
@@ -324,18 +317,100 @@
             if (filterSelect) {
                 filterSelect.addEventListener('change', () => {
                     const value = filterSelect.value;
-                    // "Daily Report", "Monthly Report", "Annual Report" -> Show
                     if (value === 'Daily Report' || value === 'Monthly Report' || value === 'Annual Report') {
                         showNoDataUI();
                     } else {
-                        // "User-defined Report", "Simulation Report" -> Hide (or switch to other UI)
                         hideNoDataUI();
                     }
                 });
-
-                // Trigger once on load to set initial state
                 filterSelect.dispatchEvent(new Event('change'));
             }
+
+            // === NEW: Plant Selection List Logic ===
+            const sourceListContainer = document.getElementById('ps-source-list');
+            const selectedListContainer = document.getElementById('ps-selected-list');
+            const btnClearSelection = document.getElementById('btn-clear-selection');
+
+            // Dummy Data
+            const plantData = [
+                { id: 1, name: "BINU", status: "green" },
+                { id: 2, name: "Biju Ramachandran", status: "green" },
+                { id: 3, name: "CAPITAL ASSOCIATES", status: "green" },
+                { id: 4, name: "DR KASIM", status: "green" },
+                { id: 5, name: "DR RAVI", status: "green" },
+                { id: 6, name: "GIRIJA", status: "gray" },
+                { id: 7, name: "Hyfa", status: "green" },
+                { id: 8, name: "HARIS", status: "green" },
+                { id: 9, name: "Junaid Thalassery", status: "gray" },
+                { id: 10, name: "KRISHNAN", status: "green" },
+                { id: 11, name: "Karthika", status: "green" },
+                { id: 12, name: "MAKKAL", status: "gray" },
+                { id: 13, name: "MITHUN", status: "green" },
+                { id: 14, name: "MOHAMMAD", status: "green" },
+            ];
+
+            let selectedIds = new Set();
+
+            function renderLists() {
+                if (!sourceListContainer || !selectedListContainer) return;
+
+                sourceListContainer.innerHTML = '';
+                selectedListContainer.innerHTML = '';
+
+                plantData.forEach(plant => {
+                    // Create Item Element
+                    const item = document.createElement('div');
+                    item.className = 'ps-list-item';
+
+                    const leftPart = document.createElement('div');
+                    leftPart.className = 'ps-item-left';
+
+                    const dot = document.createElement('span');
+                    dot.className = `ps-status-dot ${plant.status}`;
+
+                    const name = document.createElement('span');
+                    name.className = 'ps-item-name';
+                    name.textContent = plant.name;
+
+                    leftPart.appendChild(dot);
+                    leftPart.appendChild(name);
+                    item.appendChild(leftPart);
+
+                    if (selectedIds.has(plant.id)) {
+                        // Render in Selected List
+                        const removeIcon = document.createElement('i');
+                        removeIcon.className = 'fa-solid fa-trash-can ps-action-icon ps-remove-icon';
+                        removeIcon.title = 'Remove';
+                        removeIcon.onclick = () => {
+                            selectedIds.delete(plant.id);
+                            renderLists();
+                        };
+                        item.appendChild(removeIcon);
+                        selectedListContainer.appendChild(item);
+                    } else {
+                        // Render in Source List
+                        const addIcon = document.createElement('i');
+                        addIcon.className = 'fa-solid fa-file-circle-plus ps-action-icon ps-add-icon';
+                        addIcon.title = 'Add';
+                        addIcon.onclick = () => {
+                            selectedIds.add(plant.id);
+                            renderLists();
+                        };
+                        item.appendChild(addIcon);
+                        sourceListContainer.appendChild(item);
+                    }
+                });
+            }
+
+            if (btnClearSelection) {
+                btnClearSelection.addEventListener('click', () => {
+                    selectedIds.clear();
+                    renderLists();
+                });
+            }
+
+            // Initial Render
+            renderLists();
         });
     </script>
 </body>
