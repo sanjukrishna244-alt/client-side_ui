@@ -42,14 +42,32 @@
     max-width: 350px;
 }
 
-.search-input {
+
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     width: 100%;
-    padding: 8px 10px 8px 30px;
+    padding: 4px 10px 4px 30px;
+    /* Padding for icon */
     border: 1px solid #dcdcdc;
     border-radius: 4px;
+    background-color: white;
+    min-height: 38px;
+    /* Approx height to match other inputs */
+    cursor: text;
+}
+
+.search-input-field {
+    border: none;
     outline: none;
+    background: transparent;
     font-size: 13px;
     color: #757575;
+    flex: 1;
+    min-width: 50px;
+    /* Minimize width when tags crowd */
+    padding: 0;
 }
 
 .search-icon {
@@ -60,6 +78,10 @@
     width: 14px;
     height: 14px;
     color: #9e9e9e;
+    z-index: 1;
+    /* Ensure icon is above wrapper background */
+    pointer-events: none;
+    /* Let clicks pass through to wrapper */
 }
 
 .filter-select,
@@ -465,6 +487,7 @@
     background-color: #00bfa5;
     /* Image shows green */
 }
+
 /* Plant Selection List Items */
 .ps-list-content {
     flex: 1;
@@ -500,7 +523,8 @@
 }
 
 .ps-status-dot.green {
-    background-color: #72c045; /* Green status */
+    background-color: #72c045;
+    /* Green status */
 }
 
 .ps-item-name {
@@ -532,7 +556,58 @@
     width: 5px;
 }
 
-.ps-list-content::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 3px;
+/* === NEW: Search Tag Styles === */
+.ps-search-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e0f2f1;
+    /* Light Teal */
+    border: 1px solid #b2dfdb;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 13px;
+    color: #00695c;
+    white-space: nowrap;
+}
+
+.ps-search-tag span {
+    margin-right: 6px;
+}
+
+.ps-search-tag-remove {
+    cursor: pointer;
+    font-size: 12px;
+    color: #00796b;
+    transition: color 0.2s;
+}
+
+.ps-search-tag-remove:hover {
+    color: #d32f2f;
+    /* Red on hover */
+}
+
+/* Ensure container scrolls if too many tags */
+#search-tags-container {
+    display: flex;
+    /* Enforce flexbox */
+    flex-direction: row;
+    /* Horizontal layout */
+    flex-wrap: nowrap;
+    /* Prevent wrapping */
+    align-items: center;
+    gap: 5px;
+    max-width: 300px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    /* Scrollbar space */
+}
+
+/* Hide scrollbar for cleaner look */
+#search-tags-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+#search-tags-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
 }

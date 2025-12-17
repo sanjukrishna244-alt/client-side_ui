@@ -79,12 +79,17 @@
 
                 <!-- Filter Bar -->
                 <div class="filter-bar">
-                    <div class="search-group">
+                    <div class="search-group" id="search-group-container">
                         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" class="search-input" placeholder="Please enter plant / SN / email">
+
+                        <!-- Wrapper acts as the visual input box containing tags + actual input -->
+                        <div class="search-input-wrapper">
+                            <div id="search-tags-container"></div>
+                            <input type="text" class="search-input-field" placeholder="Please enter plant / SN / email">
+                        </div>
                     </div>
 
                     <select class="filter-select">
@@ -99,7 +104,7 @@
                         onfocus="(this.type='date')" onblur="(this.type='text')">
 
                     <div class="btns-container">
-                        <button class="btn-generate">Generate Report</button>
+                        <button class="btn-generate" id="btn-generate-report">Generate Report</button>
                         <div class="export-btn-wrapper">
                             <button class="btn-export-gray" id="btn-export">Export</button>
                             <div class="export-popup" id="export-popup">
@@ -255,7 +260,7 @@
             }
 
             // Modal Logic
-            const searchInput = document.querySelector('.search-input'); // The main search input
+            const searchInput = document.querySelector('.search-input-wrapper'); // The main search wrapper
             const modalOverlay = document.getElementById('plant-modal-overlay');
             const btnCancel = document.getElementById('btn-cancel-modal');
             const btnConfirm = document.getElementById('btn-confirm-modal');
@@ -268,12 +273,6 @@
 
             if (btnCancel) {
                 btnCancel.addEventListener('click', () => {
-                    modalOverlay.classList.remove('show');
-                });
-            }
-
-            if (btnConfirm) {
-                btnConfirm.addEventListener('click', () => {
                     modalOverlay.classList.remove('show');
                 });
             }
@@ -467,6 +466,9 @@
             const noDataView = document.getElementById('no-data-view');
             const resultsView = document.getElementById('report-results-view');
             const tableBody = document.getElementById('report-table-body');
+            const btnGenerateReport = document.getElementById('btn-generate-report');
+            const searchTagsContainer = document.getElementById('search-tags-container');
+
             let reportChartInstance = null;
 
             function renderChart() {
@@ -623,20 +625,58 @@
                 }
             }
 
+            function renderSearchTags() {
+                if (!searchTagsContainer) return;
+                searchTagsContainer.innerHTML = ''; // Clear existing tags
+
+                // Create a Map for easy lookup of names by ID since selectedIds only stores IDs
+                const plantMap = new Map();
+                plantData.forEach(p => plantMap.set(p.id, p.name));
+
+                selectedIds.forEach(id => {
+                    const name = plantMap.get(id);
+                    if (name) {
+                        const tag = document.createElement('div');
+                        tag.className = 'ps-search-tag';
+                        tag.innerHTML = `
+                            <span>${name}</span>
+                            <i class="fa-solid fa-xmark ps-search-tag-remove" data-id="${id}"></i>
+                        `;
+
+                        // Add remove listener to this tag's close icon
+                        tag.querySelector('.ps-search-tag-remove').addEventListener('click', (e) => {
+                            e.stopPropagation(); // Prevent search bar click triggering modal
+                            const idToRemove = parseInt(e.target.getAttribute('data-id'));
+                            selectedIds.delete(idToRemove);
+                            renderSearchTags(); // Re-render tags
+                            renderLists(); // Re-render lists in modal (if open or next time it opens)
+                        });
+
+                        searchTagsContainer.appendChild(tag);
+                    }
+                });
+            }
+
             if (btnConfirm) {
                 btnConfirm.addEventListener('click', () => {
                     modalOverlay.classList.remove('show');
+                    // Render tags instead of showing graph
+                    renderSearchTags();
+                });
+            }
 
+            if (btnGenerateReport) {
+                btnGenerateReport.addEventListener('click', () => {
                     if (selectedIds.size > 0) {
                         // Show Results
                         if (noDataView) noDataView.style.display = 'none';
                         if (resultsView) resultsView.style.display = 'flex';
 
                         // Render Content
-                        setTimeout(renderChart, 100); // Small delay to ensure container is visible
+                        setTimeout(renderChart, 100);
                         updateTable();
                     } else {
-                        // Show No Data
+                        alert("Please select at least one plant to generate a report.");
                         if (noDataView) noDataView.style.display = 'block';
                         if (resultsView) resultsView.style.display = 'none';
                     }
