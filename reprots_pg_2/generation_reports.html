@@ -293,6 +293,29 @@
             const psTabs = document.querySelectorAll('.ps-tab');
             const viewPlant = document.getElementById('view-plant');
 
+            // Dummy Data
+            const plantData = [
+                { id: 1, name: "BINU", status: "green" },
+                { id: 2, name: "Biju Ramachandran", status: "green" },
+                { id: 3, name: "CAPITAL ASSOCIATES", status: "green" },
+                { id: 4, name: "DR KASIM", status: "green" },
+                { id: 5, name: "DR RAVI", status: "green" },
+                { id: 6, name: "GIRIJA", status: "gray" },
+                { id: 7, name: "Hyfa", status: "green" },
+                { id: 8, name: "HARIS", status: "green" },
+                { id: 9, name: "Junaid Thalassery", status: "gray" },
+                { id: 10, name: "KRISHNAN", status: "green" },
+                { id: 11, name: "Karthika", status: "green" },
+                { id: 12, name: "MAKKAL", status: "gray" },
+                { id: 13, name: "MITHUN", status: "green" },
+                { id: 14, name: "MOHAMMAD", status: "green" },
+            ];
+
+            // Initialize State
+            let currentTab = 'Plant';
+            let currentData = plantData; // Default to Plant
+            let selectedIds = new Set();
+
             psTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     // 1. Remove active class from all
@@ -301,19 +324,27 @@
                     tab.classList.add('active');
 
                     // 3. Logic to show/hide content
-                    // Per user request, displays the same #view-plant div for all tabs, but we update the title
+                    const tabName = tab.textContent.trim();
+                    currentTab = tabName;
+
                     if (viewPlant) {
                         viewPlant.style.display = 'flex';
-
-                        // Update the header text to match the tab
-                        // e.g., "Select plant", "Select SN"
                         const panelHeader = viewPlant.querySelector('.ps-panel-header span');
                         if (panelHeader) {
-                            // Convert tab text to appropriate case (e.g. "Select Plant")
-                            // Keeping it simple: "Select " + tab text
-                            panelHeader.textContent = `Select ${tab.textContent.trim()}`;
+                            panelHeader.textContent = `Select ${tabName}`;
                         }
                     }
+
+                    // Switch Data Source
+                    selectedIds.clear(); // Clear selection on tab switch
+                    if (tabName === 'SN') {
+                        currentData = []; // No data for SN
+                    } else if (tabName === 'Plant') {
+                        currentData = plantData; // Restore plant data
+                    } else {
+                        currentData = []; // Default empty
+                    }
+                    renderLists();
                 });
             });
 
@@ -369,25 +400,6 @@
             const selectedListContainer = document.getElementById('ps-selected-list');
             const btnClearSelection = document.getElementById('btn-clear-selection');
 
-            // Dummy Data
-            const plantData = [
-                { id: 1, name: "BINU", status: "green" },
-                { id: 2, name: "Biju Ramachandran", status: "green" },
-                { id: 3, name: "CAPITAL ASSOCIATES", status: "green" },
-                { id: 4, name: "DR KASIM", status: "green" },
-                { id: 5, name: "DR RAVI", status: "green" },
-                { id: 6, name: "GIRIJA", status: "gray" },
-                { id: 7, name: "Hyfa", status: "green" },
-                { id: 8, name: "HARIS", status: "green" },
-                { id: 9, name: "Junaid Thalassery", status: "gray" },
-                { id: 10, name: "KRISHNAN", status: "green" },
-                { id: 11, name: "Karthika", status: "green" },
-                { id: 12, name: "MAKKAL", status: "gray" },
-                { id: 13, name: "MITHUN", status: "green" },
-                { id: 14, name: "MOHAMMAD", status: "green" },
-            ];
-
-            let selectedIds = new Set();
 
             function renderLists() {
                 if (!sourceListContainer || !selectedListContainer) return;
@@ -395,7 +407,8 @@
                 sourceListContainer.innerHTML = '';
                 selectedListContainer.innerHTML = '';
 
-                plantData.forEach(plant => {
+                // Iterate over dynamic 'currentData' instead of static 'plantData'
+                currentData.forEach(plant => {
                     // Create Item Element
                     const item = document.createElement('div');
                     item.className = 'ps-list-item';
