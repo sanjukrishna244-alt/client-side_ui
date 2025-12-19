@@ -611,3 +611,27 @@
     background: #ccc;
     border-radius: 2px;
 }
+
+/* === NEW: Statistics Mode Location Styles === */
+.location-group {
+    display: none;
+    /* Controlled by JS */
+    gap: 10px;
+}
+
+.location-select {
+    min-width: 120px;
+}
+
+#filter-organization {
+    min-width: 180px;
+}
+
+#filter-date-input[type="month"] {
+    cursor: pointer;
+}
+
+/* Ensure active menu items look consistent */
+.menu-item {
+    cursor: pointer;
+}
